@@ -247,3 +247,16 @@ sk-****（七牛新 Key，已写入 backend/.env，未记录明文）
 3. 排查其他七牛免费模型：glm-4.5-air-free、kimi-k3-free 已下线（502），nemotron free 上游 502，conatus-free 瞬时可用，故未更换模型。
 4. 修复：qfy_serviceController 增加 429 自动重试，最多 3 次（间隔 2s、4s），最终失败给出中文提示并建议切换硅基流动。
 5. 实测：连续 3 次请求全部成功，耗时 32.8s / 7.2s / 0.9s（首次命中两次限流后成功）。
+
+---
+
+**时间：** 2026-11-25 14:48:42
+**大模型：** DeepSeek-V4.1-Flash
+**提示词全文：**
+
+本项目提交了吗，规则还生效吗
+
+**执行与自查：**
+1. 提交状态：本地 main 与 origin/main 均为 779fb9a，工作区干净；GitHub 用户名改为 qify 后，远程地址更新为 git@github.com:qify/qify-web-llm.git。
+2. 规则自查发现：10 个 HTML 页面顶部缺统一文件头注释块（姓名/学号/时间/大模型），现已补齐并单独提交。
+3. 其余规则核对通过：源码文件头齐全、命名 qfy_ 前缀、接口统一响应格式、qfy_interface.md 与 qfy_database.md 持续追加、.env 未入库。
