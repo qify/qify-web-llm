@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网页设计课程作业 - 数据库连接</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-19 | 大模型：DeepSeek-V4.1-Flash -->
+
+  <main class="qfy_page">
+    <header class="qfy_hero">
+      <div class="qfy_card">
+        <p class="qfy_eyebrow">MySQL · 数据库连接测试</p>
+        <h1 class="qfy_title qfy_title_sm">数据库连接</h1>
+
+        <form class="qfy_form" id="qfy_db_form">
+          <div class="qfy_field">
+            <label class="qfy_label" for="qfy_username">用户名</label>
+            <input class="qfy_input" id="qfy_username" name="username" type="text"
+                   value="root" placeholder="请输入 MySQL 用户名" autocomplete="username">
+          </div>
+
+          <div class="qfy_field">
+            <label class="qfy_label" for="qfy_password">密码</label>
+            <input class="qfy_input" id="qfy_password" name="password" type="password"
+                   value="123456" placeholder="请输入 MySQL 密码" autocomplete="current-password">
+          </div>
+
+          <button class="qfy_btn" id="qfy_conn_btn" type="submit">连接数据库</button>
+        </form>
+
+        <div class="qfy_msg" id="qfy_db_msg" role="status" aria-live="polite"></div>
+
+        <a class="qfy_back_link" href="index.html">← 返回首页</a>
+      </div>
+    </header>
+
+    <footer class="qfy_footer">
+      <p>© 2026 齐方圆 · 24001011031 · 网页设计课程作业</p>
+    </footer>
+  </main>
+
+  <script src="js/database.js"></script>
+</body>
+</html>

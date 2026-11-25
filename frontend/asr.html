@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网页设计课程作业 - 语音识别</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash -->
+
+  <main class="qfy_page">
+    <header class="qfy_hero">
+      <div class="qfy_card qfy_card_wide">
+        <p class="qfy_eyebrow">七牛 AI · 语音识别</p>
+        <h1 class="qfy_title qfy_title_sm">语音识别</h1>
+        <p class="qfy_subtitle">输入语音，输出文字 · 模型 qwen-audio-3.0-asr-flash</p>
+
+        <div class="qfy_api_box">
+          <span class="qfy_api_label">后端接口</span>
+          <a class="qfy_api_link" href="/api/asr" target="_blank">POST /api/asr</a>
+        </div>
+
+        <section class="qfy_kb_block">
+          <h2 class="qfy_kb_h2">方式一：上传音频文件</h2>
+          <div class="qfy_kb_upload">
+            <input class="qfy_file_input" id="qfy_asr_file" type="file" accept="audio/*">
+            <button class="qfy_btn" id="qfy_asr_upload_btn" type="button">上传识别</button>
+          </div>
+          <p class="qfy_kb_hint">支持 wav / mp3 / m4a / ogg / webm，单文件不超过 20MB。</p>
+        </section>
+
+        <section class="qfy_kb_block">
+          <h2 class="qfy_kb_h2">方式二：现场录音</h2>
+          <div class="qfy_kb_upload">
+            <button class="qfy_btn qfy_btn_record" id="qfy_asr_record_btn" type="button">开始录音</button>
+            <span class="qfy_kb_hint" id="qfy_asr_record_tip">点击开始录音，再次点击结束并识别</span>
+          </div>
+        </section>
+
+        <section class="qfy_kb_block">
+          <h2 class="qfy_kb_h2">音频预览</h2>
+          <audio class="qfy_asr_audio" id="qfy_asr_audio" controls hidden></audio>
+          <p class="qfy_kb_hint" id="qfy_asr_tip">选择音频或录音后，识别结果会显示在下方。</p>
+
+          <div class="qfy_kb_answer" id="qfy_asr_result" hidden>
+            <p class="qfy_kb_answer_label">识别文字</p>
+            <p class="qfy_kb_answer_text" id="qfy_asr_text"></p>
+            <p class="qfy_kb_hint" id="qfy_asr_meta"></p>
+          </div>
+        </section>
+
+        <a class="qfy_back_link" href="index.html">← 返回首页</a>
+      </div>
+    </header>
+
+    <footer class="qfy_footer">
+      <p>© 2026 齐方圆 · 24001011031 · 网页设计课程作业</p>
+    </footer>
+  </main>
+
+  <script src="js/origin_guard.js"></script>
+  <script src="js/asr.js"></script>
+</body>
+</html>

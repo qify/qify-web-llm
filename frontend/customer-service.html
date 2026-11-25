@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网页设计课程作业 - 在线客服</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash -->
+
+  <main class="qfy_page">
+    <header class="qfy_hero">
+      <div class="qfy_card qfy_card_wide">
+        <p class="qfy_eyebrow">中华美食街 · 在线客服</p>
+        <h1 class="qfy_title qfy_title_sm">在线客服</h1>
+
+        <div class="qfy_api_box">
+          <span class="qfy_api_label">后端接口</span>
+          <a class="qfy_api_link" href="/api/service" target="_blank">POST /api/service</a>
+          <span class="qfy_api_label">服务商</span>
+          <select class="qfy_select" id="qfy_service_provider">
+            <option value="siliconflow" selected>硅基流动</option>
+            <option value="qiniu">七牛</option>
+          </select>
+        </div>
+
+        <div class="qfy_chat_window">
+          <div class="qfy_chat_messages" id="qfy_service_messages"></div>
+
+          <div class="qfy_service_quick" id="qfy_service_quick">
+            <button class="qfy_service_chip" type="button">你们几点营业？</button>
+            <button class="qfy_service_chip" type="button">招牌菜有哪些？</button>
+            <button class="qfy_service_chip" type="button">配送范围多大？</button>
+            <button class="qfy_service_chip" type="button">能帮我写一段代码吗？</button>
+          </div>
+
+          <div class="qfy_chat_input_row">
+            <textarea class="qfy_chat_input" id="qfy_service_input"
+                      placeholder="请输入你的问题，Enter 发送，Shift + Enter 换行"></textarea>
+            <div class="qfy_chat_btns">
+              <button class="qfy_btn" id="qfy_service_send" type="button">发送</button>
+              <button class="qfy_btn qfy_btn_ghost" id="qfy_service_clear" type="button">清空</button>
+            </div>
+          </div>
+
+          <p class="qfy_chat_tip" id="qfy_service_status">客服在线 · 当前服务商：硅基流动</p>
+        </div>
+
+        <a class="qfy_back_link" href="index.html">← 返回首页</a>
+      </div>
+    </header>
+
+    <footer class="qfy_footer">
+      <p>© 2026 齐方圆 · 24001011031 · 网页设计课程作业</p>
+    </footer>
+  </main>
+
+  <script src="js/origin_guard.js"></script>
+  <script src="js/customer_service.js"></script>
+</body>
+</html>

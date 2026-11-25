@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网页设计课程作业 - LLM 实践操作痕迹展示</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash -->
+
+  <main class="qfy_page">
+    <header class="qfy_hero">
+      <div class="qfy_card qfy_card_wide">
+        <p class="qfy_eyebrow">课程实践 · LLM 应用</p>
+        <h1 class="qfy_title qfy_title_sm">LLM 实践操作痕迹展示</h1>
+        <p class="qfy_subtitle">齐方圆 · 24001011031 · 4 个模块均可在此页现场操作</p>
+
+        <div class="qfy_api_box">
+          <span class="qfy_api_label">接口</span>
+          <a class="qfy_api_link" href="/api/service" target="_blank">POST /api/service</a>
+          <a class="qfy_api_link" href="/api/kb/documents" target="_blank">GET /api/kb/documents</a>
+          <a class="qfy_api_link" href="/api/vision" target="_blank">POST /api/vision</a>
+          <a class="qfy_api_link" href="/api/asr" target="_blank">POST /api/asr</a>
+        </div>
+
+        <section class="qfy_kb_block">
+          <h2 class="qfy_kb_h2">操作痕迹与验证结果</h2>
+          <div class="qfy_kb_table_wrap">
+            <table class="qfy_kb_table">
+              <thead>
+                <tr>
+                  <th>模块</th>
+                  <th>操作痕迹</th>
+                  <th>实测结果</th>
+                  <th>状态</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>AI 客服（多平台切换）</td>
+                  <td>下拉框切换「硅基流动 / 七牛」后继续对话，后端按 provider 读取各自配置</td>
+                  <td>两平台均正确回答营业时间、招牌菜、配送；越界问题引导留言</td>
+                  <td><span class="qfy_badge_ok">通过</span></td>
+                </tr>
+                <tr>
+                  <td>知识库（RAG）</td>
+                  <td>上传 客服FAQ.txt / 门店运营手册.md，查看切块与列表，提问验证</td>
+                  <td>共 2 个文档、6 个切块；营业时间、会员优惠命中；越界问题回答"暂未找到"</td>
+                  <td><span class="qfy_badge_ok">通过</span></td>
+                </tr>
+                <tr>
+                  <td>图像识别</td>
+                  <td>上传红苹果测试图，调用 Qwen3-VL-32B-Instruct</td>
+                  <td>返回主体、背景、色调、水印等准确描述</td>
+                  <td><span class="qfy_badge_ok">通过</span></td>
+                </tr>
+                <tr>
+                  <td>语音识别</td>
+                  <td>上传合成语音「今天天气不错，我们一起去吃饭吧。」</td>
+                  <td>返回文字与音频内容一致；静音音频提示未识别到语音</td>
+                  <td><span class="qfy_badge_ok">通过</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="qfy_kb_block">
+          <h2 class="qfy_kb_h2">现场演示</h2>
+          <div class="qfy_tabs" id="qfy_practice_tabs">
+            <button class="qfy_tab qfy_tab_active" type="button" data-url="customer-service.html">1. AI 客服切换</button>
+            <button class="qfy_tab" type="button" data-url="knowledge.html">2. 知识库上传问答</button>
+            <button class="qfy_tab" type="button" data-url="vision.html">3. 图像识别</button>
+            <button class="qfy_tab" type="button" data-url="asr.html">4. 语音识别</button>
+          </div>
+          <p class="qfy_kb_hint" id="qfy_practice_hint">演示 1：在下方页面「服务商」下拉框切换硅基流动 / 七牛，然后继续提问，对话照常进行。</p>
+          <div class="qfy_practice_frame_wrap">
+            <iframe class="qfy_practice_frame" id="qfy_practice_frame" title="LLM 实践演示" src="customer-service.html"></iframe>
+          </div>
+        </section>
+
+        <a class="qfy_back_link" href="index.html">← 返回首页</a>
+      </div>
+    </header>
+
+    <footer class="qfy_footer">
+      <p>© 2026 齐方圆 · 24001011031 · 网页设计课程作业</p>
+    </footer>
+  </main>
+
+  <script src="js/origin_guard.js"></script>
+  <script src="js/practice.js"></script>
+</body>
+</html>

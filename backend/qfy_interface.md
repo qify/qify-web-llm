@@ -25,3 +25,315 @@
   }
   ```
 - **修改时间：** 2026-11-19
+
+---
+
+## 2026-11-19 14:17:04 新增：测试 MySQL 连接
+
+- **接口路径：** /api/db/connect
+- **HTTP 方法：** POST
+- **请求参数：** Content-Type: application/json
+  ```json
+  {
+    "username": "root",
+    "password": "123456"
+  }
+  ```
+  说明：host 取 backend/.env 的 DB_HOST（默认 localhost），连接时不指定数据库名。
+- **响应格式（成功）：**
+  ```json
+  {
+    "code": 0,
+    "msg": "数据库连接成功",
+    "data": {
+      "username": "root",
+      "version": "8.0.30",
+      "currentUser": "root@localhost"
+    }
+  }
+  ```
+- **响应格式（失败）：**
+  ```json
+  {
+    "code": 1002,
+    "msg": "数据库连接失败：Access denied for user 'root'@'localhost' (using password: YES)",
+    "data": { "errorCode": "ER_ACCESS_DENIED_ERROR" }
+  }
+  ```
+  说明：用户名为空时返回 code=1001、msg="用户名不能为空"。
+- **修改时间：** 2026-11-19 14:17:04
+
+---
+
+## 2026-11-19 14:18:51 新增：科技新闻列表
+
+- **接口路径：** /api/news
+- **HTTP 方法：** GET
+- **请求参数：** 无
+- **响应格式（成功）：**
+  ```json
+  {
+    "code": 0,
+    "msg": "查询成功",
+    "data": {
+      "total": 10,
+      "list": [
+        {
+          "qfy_id": 1,
+          "qfy_title": "国内首条 8 英寸硅光芯片产线正式通线",
+          "qfy_summary": "该产线聚焦硅基光电子芯片，覆盖设计、流片到封装测试全流程，预计年产能 2 万片。",
+          "qfy_content": "该产线聚焦硅基光电子芯片，覆盖设计、流片到封装测试全流程，预计年产能 2 万片。",
+          "qfy_source": "科技日报",
+          "qfy_author": "李明远",
+          "qfy_category": "半导体",
+          "qfy_publish_time": "2026-11-19 09:20:00"
+        }
+      ]
+    }
+  }
+  ```
+- **响应格式（失败）：**
+  ```json
+  {
+    "code": 2001,
+    "msg": "查询科技新闻失败：<错误信息>",
+    "data": null
+  }
+  ```
+  说明：按 qfy_publish_time 倒序返回，时间由 DATE_FORMAT 格式化为 "YYYY-MM-DD HH:mm:ss"。
+- **修改时间：** 2026-11-19 14:18:51
+
+---
+
+## 2026-11-19 14:20:16 新增：科技图文列表
+
+- **接口路径：** /api/gallery
+- **HTTP 方法：** GET
+- **请求参数：** 无
+- **响应格式（成功）：**
+  ```json
+  {
+    "code": 0,
+    "msg": "查询成功",
+    "data": {
+      "total": 10,
+      "list": [
+        {
+          "qfy_id": 1,
+          "qfy_title": "硅光芯片产线正式通线",
+          "qfy_description": "国内首条 8 英寸硅光芯片产线投产，覆盖设计、流片到封装测试全流程。",
+          "qfy_image_url": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?image_size=landscape_4_3&prompt=...",
+          "qfy_category": "半导体",
+          "qfy_publish_date": "2026-11-19"
+        }
+      ]
+    }
+  }
+  ```
+- **响应格式（失败）：**
+  ```json
+  {
+    "code": 3001,
+    "msg": "查询科技图文失败：<错误信息>",
+    "data": null
+  }
+  ```
+  说明：按 qfy_publish_date 倒序返回，发布日期由 DATE_FORMAT 格式化为 "YYYY-MM-DD"。
+- **修改时间：** 2026-11-19 14:20:16
+
+---
+
+## POST /api/chat
+
+- **接口路径：** `/api/chat`
+- **HTTP 方法：** POST
+- **请求参数（JSON）：**
+
+  ```json
+  {
+    "messages": [
+      { "role": "user", "content": "用一句话介绍你自己" }
+    ]
+  }
+  ```
+
+  说明：`messages` 为对话历史数组（最多 20 条），`role` 取值 `user` / `assistant`，`content` 长度 1~4000 字；服务端自动追加 system 提示词。
+- **响应格式（成功）：**
+
+  ```json
+  {
+    "code": 0,
+    "msg": "回复成功",
+    "data": {
+      "reply": "我是你的网页设计课程作业 AI 助手，乐意帮助解答问题和提供建议。",
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "usage": { "prompt_tokens": 45, "completion_tokens": 21, "total_tokens": 66 }
+    }
+  }
+  ```
+
+- **响应格式（失败）：**
+
+  ```json
+  {
+    "code": 3001,
+    "msg": "参数错误：messages 必须为非空数组",
+    "data": null
+  }
+  ```
+
+  错误码：3001 参数错误；3002 AI 服务调用失败/异常；3003 缺少 SILICONFLOW_API_KEY 配置。
+- **修改时间：** 2026-11-23 14:00:35
+
+---
+
+## POST /api/service（中华美食街在线客服，支持多平台切换）
+
+- **接口路径：** `/api/service`
+- **HTTP 方法：** POST
+- **请求参数（JSON）：**
+
+  ```json
+  {
+    "provider": "siliconflow",
+    "messages": [
+      { "role": "user", "content": "你们几点营业？" }
+    ]
+  }
+  ```
+
+  说明：`provider` 可选 `siliconflow`（默认）/ `qiniu`，后端据此读取 `SILICONFLOW_*` 或 `QINIU_*` 的 baseURL、model、apiKey；`messages` 规则同 `/api/chat`（最多 20 条、单条 1~4000 字）。
+- **system 人设：** 中华美食街客服，只回答营业时间（11:00-22:00，节假日不打烊）、招牌菜（红油抄手、腊汁肉夹馍、糖油粑粑、老北京炸酱面）、配送范围（周边 5 公里，起送 20 元，配送费 5 元）三类问题，其余问题礼貌引导留言。
+- **响应格式（成功）：**
+
+  ```json
+  {
+    "code": 0,
+    "msg": "回复成功",
+    "data": {
+      "reply": "您好呀！我们每天 11:00 到 22:00 营业，节假日也不打烊哦～",
+      "provider": "siliconflow",
+      "providerLabel": "硅基流动",
+      "model": "deepseek-ai/DeepSeek-V4-Flash",
+      "usage": { "prompt_tokens": 120, "completion_tokens": 30, "total_tokens": 150 }
+    }
+  }
+  ```
+
+- **响应格式（失败）：**
+
+  ```json
+  { "code": 4001, "msg": "参数错误：provider 仅支持 siliconflow / qiniu", "data": null }
+  { "code": 4002, "msg": "七牛服务调用失败：Invalid API key", "data": null }
+  { "code": 4003, "msg": "服务未配置：缺少该平台的 API Key", "data": null }
+  ```
+
+- **修改时间：** 2026-11-23 14:17:40
+
+### 变更记录（2026-11-23 14:38:09）
+
+- `.env` 的 `QINIU_API_KEY` 更换为新 Key（明文不入库，仅存 `.env`）。
+- 新 Key 鉴权通过，但需账号完成实名认证（403 `account_identity_verification_required`）；认证后实测 `provider=qiniu` 调用成功。
+- 七牛免费模型存在全局限流（429 `free_campaign_global_limit`），偶发时接口返回 `4002` 友好错误提示，稍后重试即可。
+
+---
+
+## 知识库（RAG）接口
+
+统一 JSON 格式：`{ "code": 0, "msg": "提示信息", "data": {...} }`，code=0 成功。
+
+### POST /api/kb/upload
+
+- **请求：** `multipart/form-data`，字段名 `file`，单文件 ≤ 20MB，支持 txt / md / pdf / doc / docx / pptx（旧版 .ppt 提示转存为 .pptx）
+- **处理流程：** 解析文本 -> 按 400 字切块（重叠 60 字）-> 调用 `BAAI/bge-m3` 向量化 -> 写入 `qfy_kb_document` / `qfy_kb_chunk`
+- **响应示例：**
+
+  ```json
+  { "code": 0, "msg": "上传成功",
+    "data": { "id": 1, "name": "客服FAQ.txt", "ext": "txt", "size": 950, "chunkCount": 2, "charCount": 862 } }
+  ```
+
+- **错误码：** 5001 未选择文件；5002 解析失败（含格式不支持、内容为空）；5003 数据库异常
+
+### GET /api/kb/documents
+
+- **响应示例：**
+
+  ```json
+  { "code": 0, "msg": "查询成功",
+    "data": { "total": 2, "list": [
+      { "id": 2, "name": "门店运营手册.md", "ext": "md", "size": 2100, "chunk_count": 4, "status": "ready", "created_at": "2026-11-23T14:40:12.000Z" }
+    ] } }
+  ```
+
+### DELETE /api/kb/documents/:id
+
+- **响应示例：** `{ "code": 0, "msg": "删除成功", "data": { "id": 1 } }`
+- **错误码：** 5001 无效 id；5004 文档不存在
+
+### POST /api/kb/ask
+
+- **请求参数：**
+
+  ```json
+  { "question": "会员储值有什么优惠？" }
+  ```
+
+- **处理流程：** 问题向量化 -> 余弦相似度检索 Top3 切块 -> 拼装提示词调用 `SILICONFLOW_MODEL` -> 返回答案与引用来源；后端控制台打印「发送给大模型的数据 / 接自大模型的数据」
+- **响应示例：**
+
+  ```json
+  { "code": 0, "msg": "回答成功",
+    "data": {
+      "question": "会员储值有什么优惠？",
+      "answer": "储值200元送20元，储值500元送60元，储值1000元送150元。【资料1】【资料3】",
+      "model": "deepseek-ai/DeepSeek-V4-Flash",
+      "sources": [ { "docName": "门店运营手册.md", "chunkIndex": 3, "score": 0.6439, "content": "..." } ],
+      "usage": { "prompt_tokens": 900, "completion_tokens": 40, "total_tokens": 940 } } }
+  ```
+
+- **错误码：** 5001 参数错误；5002 大模型调用失败；5005 知识库为空
+- **修改时间：** 2026-11-23 14:41:22
+
+---
+
+## POST /api/vision（图像识别）
+
+- **请求：** `multipart/form-data`，字段名 `image`，支持 jpg / png / webp / gif，单文件 ≤ 10MB
+- **处理流程：** 图片转 base64 data URL -> 调用视觉模型 `VISION_MODEL`（默认 `Qwen/Qwen3-VL-32B-Instruct`，与文本模型共用 `SILICONFLOW_API_KEY`）-> 返回中文画面描述
+- **响应示例：**
+
+  ```json
+  { "code": 0, "msg": "识别成功",
+    "data": {
+      "fileName": "red_apple.jpg",
+      "size": 176626,
+      "description": "画面主体为一颗鲜红饱满的苹果，置于粗糙的木质桌面上……右下角有“AI生成”水印。",
+      "model": "Qwen/Qwen3-VL-32B-Instruct",
+      "usage": { "prompt_tokens": 1200, "completion_tokens": 180, "total_tokens": 1380 } } }
+  ```
+
+- **错误码：** 6001 未选择图片/类型不支持；6002 识别失败（上游报错、超时）；6003 缺少 API Key
+- **备注：** 文本模型 `deepseek-ai/DeepSeek-V4-Flash` 不支持图片输入（返回 400 `The model is not a VLM`），故视觉任务使用同一 Key 下的视觉模型，配置项为 `.env` 的 `VISION_MODEL`
+- **修改时间：** 2026-11-23 14:45:35
+
+---
+
+## POST /api/asr（语音识别）
+
+- **请求：** `multipart/form-data`，字段名 `audio`，支持 wav / mp3 / m4a / ogg / webm，单文件 ≤ 20MB
+- **上游：** 七牛 AI `POST https://api.qnaigc.com/v1/audio/transcriptions`，`model=qwen-audio-3.0-asr-flash`（配置项 `QINIU_ASR_MODEL`），使用 `QINIU_API_KEY`
+- **响应示例：**
+
+  ```json
+  { "code": 0, "msg": "识别成功",
+    "data": { "fileName": "speech.wav", "size": 234414,
+              "text": "今天天气不错，我们一起去吃饭吧。",
+              "model": "qwen-audio-3.0-asr-flash" } }
+  ```
+
+- **错误码：** 7001 未选择音频/格式不支持；7002 识别失败（含静音音频 `ASR_RESPONSE_HAVE_NO_WORDS` 已转为中文提示、超时）；7003 缺少 API Key
+- **备注：** 模型 ID 实际为全小写 `qwen-audio-3.0-asr-flash`，写成 `Qwen-Audio-3.0-ASR-Flash` 会返回 `no available channels for model`
+- **修改时间：** 2026-11-23 14:48:57
+
+> 追加（2026-11-23 17:40:42）：`POST /api/service` 增加限流自动重试。七牛免费模型 `qiniu/conatus-free` 存在全局限流（429 `free_campaign_global_limit`），现命中限流后自动重试最多 3 次（间隔 2s、4s），仍失败则返回中文提示「七牛免费模型当前限流，请稍等几秒再试或切换到硅基流动」。实测连发 3 次均成功，耗时约 32.8s / 7.2s / 0.9s。

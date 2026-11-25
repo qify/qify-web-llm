@@ -20,6 +20,14 @@ qfy_app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
 // 接口路由：统一 /api 前缀
 qfy_app.use('/api', require('./routes/qfy_health'));
+qfy_app.use('/api/db', require('./routes/qfy_db'));
+qfy_app.use('/api/news', require('./routes/qfy_news'));
+qfy_app.use('/api/gallery', require('./routes/qfy_gallery'));
+qfy_app.use('/api/chat', require('./routes/qfy_chat'));
+qfy_app.use('/api/service', require('./routes/qfy_service'));
+qfy_app.use('/api/kb', require('./routes/qfy_kb'));
+qfy_app.use('/api/vision', require('./routes/qfy_vision'));
+qfy_app.use('/api/asr', require('./routes/qfy_asr'));
 
 qfy_app.listen(qfy_PORT, () => {
   console.log(`qfy server running at http://localhost:${qfy_PORT}`);

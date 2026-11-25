@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网页设计课程作业 - AI 聊天</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash -->
+
+  <main class="qfy_page">
+    <header class="qfy_hero">
+      <div class="qfy_card qfy_card_wide">
+        <p class="qfy_eyebrow">硅基流动 · AI 聊天</p>
+        <h1 class="qfy_title qfy_title_sm">AI 聊天</h1>
+
+        <div class="qfy_api_box">
+          <span class="qfy_api_label">后端接口</span>
+          <a class="qfy_api_link" href="/api/chat" target="_blank">POST /api/chat</a>
+        </div>
+
+        <div class="qfy_chat_window">
+          <div class="qfy_chat_messages" id="qfy_chat_messages"></div>
+
+          <div class="qfy_chat_input_row">
+            <textarea class="qfy_chat_input" id="qfy_chat_input"
+                      placeholder="输入你的问题，Enter 发送，Shift + Enter 换行"></textarea>
+            <div class="qfy_chat_btns">
+              <button class="qfy_btn" id="qfy_chat_send" type="button">发送</button>
+              <button class="qfy_btn qfy_btn_ghost" id="qfy_chat_clear" type="button">清空</button>
+            </div>
+          </div>
+
+          <p class="qfy_chat_tip" id="qfy_chat_status">模型：Qwen/Qwen2.5-7B-Instruct · 由硅基流动提供</p>
+        </div>
+
+        <a class="qfy_back_link" href="index.html">← 返回首页</a>
+      </div>
+    </header>
+
+    <footer class="qfy_footer">
+      <p>© 2026 齐方圆 · 24001011031 · 网页设计课程作业</p>
+    </footer>
+  </main>
+
+  <script src="js/origin_guard.js"></script>
+  <script src="js/ai_chat.js"></script>
+</body>
+</html>
