@@ -337,3 +337,92 @@
 - **修改时间：** 2026-11-23 14:48:57
 
 > 追加（2026-11-23 17:40:42）：`POST /api/service` 增加限流自动重试。七牛免费模型 `qiniu/conatus-free` 存在全局限流（429 `free_campaign_global_limit`），现命中限流后自动重试最多 3 次（间隔 2s、4s），仍失败则返回中文提示「七牛免费模型当前限流，请稍等几秒再试或切换到硅基流动」。实测连发 3 次均成功，耗时约 32.8s / 7.2s / 0.9s。
+
+---
+
+## 2026-11-25 新增：AI 聊天会话管理 + 流式问答（/api/ai）
+
+### 1. 查询会话列表
+- **接口路径：** `/api/ai/sessions`
+- **HTTP 方法：** GET
+- **请求参数：** 无
+- **响应示例：**
+  ```json
+  { "code": 0, "msg": "查询成功",
+    "data": { "total": 1,
+              "list": [{ "qfy_id": 1, "qfy_title": "简历项目该怎么写", "qfy_summary": null,
+                         "qfy_summarized_count": 0, "qfy_message_count": 2,
+                         "qfy_created_at": "2026-11-25 16:10:00", "qfy_updated_at": "2026-11-25 16:10:00" }] } }
+  ```
+- **修改时间：** 2026-11-25 16:17:06
+
+### 2. 新建会话
+- **接口路径：** `/api/ai/sessions`
+- **HTTP 方法：** POST
+- **请求参数：** `{ "title": "新的对话" }`（可省略，默认「新的对话」）
+- **响应示例：** `{ "code": 0, "msg": "创建成功", "data": { "sessionId": 9 } }`
+- **修改时间：** 2026-11-25 16:17:06
+
+### 3. 重命名会话
+- **接口路径：** `/api/ai/sessions/:id`
+- **HTTP 方法：** PATCH
+- **请求参数：** `{ "title": "新标题" }`（1~120 字）
+- **响应示例：** `{ "code": 0, "msg": "重命名成功", "data": { "sessionId": 9, "title": "新标题" } }`
+- **错误码：** 4001 标题非法；4002 会话不存在
+- **修改时间：** 2026-11-25 16:17:06
+
+### 4. 删除会话
+- **接口路径：** `/api/ai/sessions/:id`
+- **HTTP 方法：** DELETE
+- **请求参数：** 无（路径参数 id）
+- **响应示例：** `{ "code": 0, "msg": "删除成功", "data": { "sessionId": 9 } }`
+- **备注：** 消息由外键 `ON DELETE CASCADE` 级联删除
+- **修改时间：** 2026-11-25 16:17:06
+
+### 5. 查询会话历史消息
+- **接口路径：** `/api/ai/sessions/:id/messages`
+- **HTTP 方法：** GET
+- **请求参数：** 无（路径参数 id）
+- **响应示例：**
+  ```json
+  { "code": 0, "msg": "查询成功",
+    "data": { "session": { "qfy_id": 9, "qfy_title": "接口测试会话", "qfy_message_count": 4 },
+              "total": 4,
+              "list": [{ "id": 17, "role": "user", "content": "用一句话解释 JavaScript 闭包",
+                         "createdAt": "2026-11-25 16:16:00" }] } }
+  ```
+- **修改时间：** 2026-11-25 16:17:06
+
+### 6. 问答（非流式）
+- **接口路径：** `/api/ai/chat`
+- **HTTP 方法：** POST
+- **请求参数：** `{ "sessionId": 9, "message": "用一句话解释闭包" }`（sessionId 可省略，自动新建会话）
+- **响应示例：**
+  ```json
+  { "code": 0, "msg": "回复成功",
+    "data": { "sessionId": 9, "messageId": 18,
+              "reply": "闭包是函数与其定义时所在词法作用域的组合……",
+              "model": "deepseek-ai/DeepSeek-V4-Flash",
+              "usage": { "prompt_tokens": 161, "completion_tokens": 46, "total_tokens": 207 },
+              "summary": "", "contextCount": 2 } }
+  ```
+- **备注：** 消息自动落库；上下文超过 12 条时，早期消息压缩进 `qfy_chat_summary` 并只发送「摘要 + 最近 12 条」
+- **错误码：** 4001 参数错误；4002 会话不存在；4003 缺少 API Key；4004 模型调用失败
+- **修改时间：** 2026-11-25 16:17:06
+
+### 7. 问答（流式 SSE）
+- **接口路径：** `/api/ai/chat/stream`
+- **HTTP 方法：** POST
+- **请求参数：** 同 `/api/ai/chat`
+- **响应格式：** `text/event-stream`，每条事件为 `data: {JSON}\n\n`
+  ```
+  data: {"type":"start","sessionId":9,"summary":"","contextCount":2}
+  data: {"type":"delta","content":"闭包"}
+  data: {"type":"done","sessionId":9,"messageId":18,"model":"deepseek-ai/DeepSeek-V4-Flash","reply":"..."}
+  data: {"type":"error","msg":"大模型调用失败：..."}
+  ```
+- **备注：** 前端用 `AbortController` 中断时，后端 `req.on('close')` 会同步中断上游请求，被中断的回复不落库
+- **修改时间：** 2026-11-25 16:17:06
+
+### 8. 兼容接口（原有）
+- `POST /api/chat` 保留不变：接收 `{ messages: [{role, content}] }`，不落库，返回 `data.reply`。新页面已统一使用 `/api/ai/*`。

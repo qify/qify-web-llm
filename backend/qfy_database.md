@@ -192,3 +192,67 @@ INSERT INTO qfy_kb_document (name, ext, size, chunk_count, status) VALUES
 
 -- 重建步骤：执行上方建表 SQL -> 启动后端 -> 在 knowledge.html 重新上传 seed_kb 下两个文件即可。
 
+---
+
+## 2026-11-25 新增：AI 聊天会话表与消息表（会话持久化 + 上下文压缩）
+
+-- 设计说明：
+-- qfy_chat_session 保存会话标题、上下文摘要（早期消息压缩后写入）与消息数；
+-- qfy_chat_message 保存每一轮 user / assistant 消息，用于历史回放与多轮上下文。
+
+```sql
+CREATE TABLE IF NOT EXISTS qfy_chat_session (
+  qfy_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  qfy_title VARCHAR(120) NOT NULL DEFAULT '新的对话',
+  qfy_summary TEXT NULL,
+  qfy_summarized_count INT UNSIGNED NOT NULL DEFAULT 0,
+  qfy_message_count INT UNSIGNED NOT NULL DEFAULT 0,
+  qfy_created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  qfy_updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS qfy_chat_message (
+  qfy_id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  qfy_session_id INT UNSIGNED NOT NULL,
+  qfy_role ENUM('user', 'assistant', 'system') NOT NULL,
+  qfy_content TEXT NOT NULL,
+  qfy_tokens INT UNSIGNED NOT NULL DEFAULT 0,
+  qfy_created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_qfy_session (qfy_session_id),
+  CONSTRAINT fk_qfy_msg_session FOREIGN KEY (qfy_session_id)
+    REFERENCES qfy_chat_session (qfy_id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
+-- 测试数据（8 条会话 + 16 条消息）：
+
+```sql
+INSERT INTO qfy_chat_session (qfy_title, qfy_summary, qfy_message_count) VALUES
+('简历项目该怎么写', NULL, 2),
+('JavaScript 闭包是什么', NULL, 2),
+('帮我解释 MVC 分层', NULL, 2),
+('RAG 检索流程梳理', NULL, 2),
+('前端页面配色建议', NULL, 2),
+('MySQL 索引优化', NULL, 2),
+('多轮对话上下文怎么管理', NULL, 2),
+('课程作业演示流程', NULL, 2);
+
+INSERT INTO qfy_chat_message (qfy_session_id, qfy_role, qfy_content, qfy_tokens) VALUES
+(1, 'user', '我做的项目是 LLM 应用，简历里该怎么描述？', 20),
+(1, 'assistant', '建议按「技术栈 + 解决的问题 + 量化结果」写，例如：基于 Node.js + Express 搭建 LLM 中间层，封装密钥管理、上下文压缩与 RAG 检索。', 60),
+(2, 'user', 'JavaScript 的闭包是什么？举个简单例子。', 16),
+(2, 'assistant', '闭包是函数与其词法作用域的组合。例如 function counter(){ let n = 0; return () => ++n; }，返回的函数仍能访问 n，因此可以持续累加。', 62),
+(3, 'user', 'Express 项目里 MVC 怎么分层？', 14),
+(3, 'assistant', 'Model 负责数据访问（SQL 与连接池），View 对应前端页面，Controller 处理参数校验与响应组装，Route 只做路径映射。', 55),
+(4, 'user', 'RAG 的检索和生成是什么关系？', 14),
+(4, 'assistant', '检索负责从知识库找出最相关的片段，生成负责把这些片段作为上下文交给大模型作答，二者串行执行，回答需要标注引用来源。', 58),
+(5, 'user', '深色网页怎么配色比较好看？', 13),
+(5, 'assistant', '建议深蓝灰底色配一到两个高饱和强调色，文字用低饱和浅色保证对比度，卡片使用半透明背景与细边框区分层级。', 52),
+(6, 'user', 'MySQL 索引什么时候会失效？', 14),
+(6, 'assistant', '常见的失效场景：对索引列使用函数或运算、隐式类型转换、模糊查询以 % 开头、联合索引未遵循最左前缀原则。', 56),
+(7, 'user', '多轮对话历史太长怎么办？', 13),
+(7, 'assistant', '可以保留最近若干轮原文，把更早的消息交给模型压缩成一段摘要写入会话表，每轮只发送「摘要 + 最近若干轮」，从而控制 Token 预算。', 60),
+(8, 'user', '演示的时候按什么顺序讲比较好？', 15),
+(8, 'assistant', '建议按「架构图 -> 普通对话 -> 会话持久化 -> 上下文压缩 -> 异常处理」的顺序演示，先讲清数据流，再逐个功能点当场操作。', 58);
+```
+

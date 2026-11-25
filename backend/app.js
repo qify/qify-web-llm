@@ -24,6 +24,7 @@ qfy_app.use('/api/db', require('./routes/qfy_db'));
 qfy_app.use('/api/news', require('./routes/qfy_news'));
 qfy_app.use('/api/gallery', require('./routes/qfy_gallery'));
 qfy_app.use('/api/chat', require('./routes/qfy_chat'));
+qfy_app.use('/api/ai', require('./routes/qfy_ai'));
 qfy_app.use('/api/service', require('./routes/qfy_service'));
 qfy_app.use('/api/kb', require('./routes/qfy_kb'));
 qfy_app.use('/api/vision', require('./routes/qfy_vision'));
