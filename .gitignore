@@ -14,3 +14,7 @@ npm-debug.log*
 Thumbs.db
 .vscode/
 .idea/
+
+# IDE 生成的分享包与临时目录
+.trae-html-share-packages/
+.trae/
