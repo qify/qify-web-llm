@@ -514,48 +514,88 @@
 
 .qfy_create_bar {
   position: fixed;
-  bottom: 66px;
+  bottom: 76px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   max-width: 480px;
   display: flex;
   justify-content: space-around;
-  padding: 14px 10px 10px;
-  background: linear-gradient(to top, #fff 70%, transparent);
+  align-items: flex-start;
+  padding: 18px 8px 8px;
+  background: linear-gradient(to top, #fff 78%, rgba(255, 255, 255, 0));
 }
 
 .qfy_create_bar a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 9px;
   font-size: 12px;
-  color: #333;
+  color: #9a9a9a;
 }
 
 .qfy_create_icon {
-  width: 54px;
-  height: 54px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
-  background: #f2f4f6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
+  background-color: #fff;
+  background-size: 32px 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.qfy_create_icon_draw {
+  background-image: url(../images/art/create/draw.svg);
+}
+
+.qfy_create_icon_tea {
+  background-image: url(../images/art/create/tea.svg);
+}
+
+.qfy_create_icon_class {
+  background-image: url(../images/art/create/class.svg);
+}
+
+.qfy_create_icon_image {
+  background-image: url(../images/art/create/image.svg);
+}
+
+.qfy_create_icon_draft {
+  background-image: url(../images/art/create/draft.svg);
 }
 
 .qfy_close_x {
   position: fixed;
-  bottom: 12px;
+  bottom: 4px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 22px;
-  color: #666;
-  background: #fff;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  padding: 6px 14px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  background: radial-gradient(circle, rgba(96, 165, 255, 0.35), rgba(96, 165, 255, 0) 70%);
+}
+
+.qfy_close_x::before,
+.qfy_close_x::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 3px;
+  margin: -1.5px 0 0 -15px;
+  border-radius: 2px;
+  background: #1c1c1c;
+}
+
+.qfy_close_x::before {
+  transform: rotate(45deg);
+}
+
+.qfy_close_x::after {
+  transform: rotate(-45deg);
 }
 
 /* ===== 我的 ===== */
