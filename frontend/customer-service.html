@@ -7,57 +7,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>画世界 - 在线客服</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/art.css">
 </head>
-<body>
-  <!-- 姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash -->
-
-  <main class="qfy_page">
-    <header class="qfy_hero">
-      <div class="qfy_card qfy_card_wide">
-        <p class="qfy_eyebrow">画世界 · 在线客服</p>
-        <h1 class="qfy_title qfy_title_sm">在线客服</h1>
-
-        <div class="qfy_api_box">
-          <span class="qfy_api_label">后端接口</span>
-          <a class="qfy_api_link" href="/api/service" target="_blank">POST /api/service</a>
-          <span class="qfy_api_label">服务商</span>
-          <select class="qfy_select" id="qfy_service_provider">
-            <option value="siliconflow" selected>硅基流动</option>
-            <option value="qiniu">七牛</option>
-          </select>
-        </div>
-
-        <div class="qfy_chat_window">
-          <div class="qfy_chat_messages" id="qfy_service_messages"></div>
-
-          <div class="qfy_service_quick" id="qfy_service_quick">
-            <button class="qfy_service_chip" type="button">投稿审核要多久？</button>
-            <button class="qfy_service_chip" type="button">会员怎么取消自动续费？</button>
-            <button class="qfy_service_chip" type="button">作品被盗图怎么举报？</button>
-            <button class="qfy_service_chip" type="button">能帮我画一张图吗？</button>
-          </div>
-
-          <div class="qfy_chat_input_row">
-            <textarea class="qfy_chat_input" id="qfy_service_input"
-                      placeholder="请输入你的问题，Enter 发送，Shift + Enter 换行"></textarea>
-            <div class="qfy_chat_btns">
-              <button class="qfy_btn" id="qfy_service_send" type="button">发送</button>
-              <button class="qfy_btn qfy_btn_ghost" id="qfy_service_clear" type="button">清空</button>
-            </div>
-          </div>
-
-          <p class="qfy_chat_tip" id="qfy_service_status">客服在线 · 当前服务商：硅基流动</p>
-        </div>
-
-        <a class="qfy_back_link" href="index.html">← 返回首页</a>
-      </div>
+<body class="qfy_art_body">
+  <div class="qfy_cs_page">
+    <header class="qfy_nav_bar">
+      <a class="qfy_nav_back" href="art-message.html">‹</a>
+      <span class="qfy_nav_title">客服小画</span>
+      <span class="qfy_nav_side"></span>
     </header>
 
-    <footer class="qfy_footer">
-      <p>© 2026 齐方圆 · 24001011031 · 画世界</p>
-    </footer>
-  </main>
+    <div class="qfy_cs_head">
+      <span class="qfy_cs_avatar">画</span>
+      <div class="qfy_cs_info">
+        <p class="qfy_cs_name">画世界官方客服</p>
+        <p class="qfy_cs_sub">账号 · 投稿 · 版权 · 会员 · 活动</p>
+      </div>
+      <div class="qfy_cs_tools">
+        <select class="qfy_cs_select" id="qfy_service_provider">
+          <option value="siliconflow" selected>硅基流动</option>
+          <option value="qiniu">七牛</option>
+        </select>
+        <button class="qfy_cs_clear" id="qfy_service_clear" type="button">清空</button>
+      </div>
+    </div>
+
+    <p class="qfy_cs_api_line">后端接口：
+      <a class="qfy_cs_api_link" href="/api/service" target="_blank">POST /api/service</a>
+    </p>
+
+    <div class="qfy_cs_msgs" id="qfy_service_messages"></div>
+
+    <div class="qfy_cs_chips" id="qfy_service_quick">
+      <button class="qfy_service_chip" type="button">投稿审核要多久？</button>
+      <button class="qfy_service_chip" type="button">会员怎么取消自动续费？</button>
+      <button class="qfy_service_chip" type="button">作品被盗图怎么举报？</button>
+      <button class="qfy_service_chip" type="button">能帮我画一张图吗？</button>
+    </div>
+
+    <div class="qfy_cs_input_row">
+      <textarea class="qfy_cs_input" id="qfy_service_input"
+                placeholder="请输入你的问题，Enter 发送，Shift + Enter 换行"></textarea>
+      <button class="qfy_cs_send" id="qfy_service_send" type="button">发送</button>
+    </div>
+
+    <p class="qfy_cs_status" id="qfy_service_status">客服在线 · 当前服务商：硅基流动</p>
+  </div>
+
+  <nav class="qfy_tabbar">
+    <a href="art-index.html"><span class="qfy_tab_icon qfy_tab_home"></span>首页</a>
+    <a href="art-feed.html"><span class="qfy_tab_icon qfy_tab_discover"></span>发现</a>
+    <a href="art-challenge.html"><span class="qfy_tab_create qfy_hjicon qfy_hjicon_tab_create"></span></a>
+    <a class="qfy_active" href="art-message.html"><span class="qfy_tab_icon qfy_tab_msg"></span>消息</a>
+    <a href="art-profile.html"><span class="qfy_tab_icon qfy_tab_mine"></span>我的</a>
+  </nav>
 
   <script src="js/origin_guard.js"></script>
   <script src="js/customer_service.js"></script>
