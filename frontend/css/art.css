@@ -536,14 +536,14 @@
 }
 
 .qfy_create_icon {
-  width: 58px;
-  height: 58px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background-color: #fff;
-  background-size: 50px 50px;
+  background-size: 40px 40px;
   background-position: center;
   background-repeat: no-repeat;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .qfy_create_icon_draw {
