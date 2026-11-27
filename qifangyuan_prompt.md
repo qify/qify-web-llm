@@ -319,3 +319,17 @@ sk-****（七牛新 Key，已写入 backend/.env，未记录明文）
 1. 把参考项目 img/signal 下的 iconfont.ttf / woff / woff2 复制到 frontend/fonts/，在 css/art.css 增加 @font-face 与 .qfy_hjicon 系列图标类（首页/消息/我的/画笔/搜索，以及 @我的、评论、粉丝、礼物、推荐、赞、群系统、通知 8 个消息图标）。
 2. art-message.html 的 8 行消息图标由 emoji 改为 iconfont 字形；art-index/art-feed/art-message/art-profile/art-search 底部中央创作按钮改为 iconfont 画笔图标。
 3. 浏览器实测 art-message.html：8 个图标全部渲染为矢量字形、底部 5 个 Tab 与蓝色画笔按钮正常、无字体加载错误（PASS）。
+
+---
+
+**时间：** 2026-11-27 23:22:10
+**大模型：** DeepSeek-V4.1-Flash
+**提示词全文：**
+
+（针对「在线客服是只需要有这一个功能吗」的答复）改为画世界客服（推荐）
+
+**执行内容：**
+1. 后端 qfy_serviceController.js 的 system 人设改为「画世界绘画社区客服」，回答范围由营业时间/招牌菜/配送范围改为账号、投稿审核、版权举报、会员画币、活动挑战五类，并补充对应已知信息与拒答兜底话术；请求/响应结构与错误码不变。
+2. 前端 customer-service.html 标题、eyebrow、4 个快捷问题、页脚统一改为画世界语境；customer_service.js 欢迎语改为画世界客服欢迎语。
+3. 重启后端并以「投稿审核要多久？」实测：code=0，模型按画世界客服人设回复。
+4. 接口文档 qfy_interface.md 追加本次变更记录，README 功能清单同步。

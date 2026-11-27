@@ -1,5 +1,5 @@
 /*
-姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash
+姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-27 | 大模型：DeepSeek-V4.1-Flash
 */
 
 const qfy_serviceMessages = document.getElementById('qfy_service_messages');
@@ -41,7 +41,7 @@ function qfy_appendMessage(qfy_role, qfy_text) {
 // 渲染欢迎语
 function qfy_renderWelcome() {
   qfy_serviceMessages.innerHTML = '';
-  qfy_appendMessage('ai', '您好，欢迎来到中华美食街！营业时间、招牌菜、配送范围的问题都可以问我，其他问题请在留言区留下联系方式。');
+  qfy_appendMessage('ai', '您好，欢迎来到画世界！账号登录、作品投稿与审核、版权举报、会员画币、活动挑战的问题都可以问我，其他问题请到「我的-意见反馈」留言。');
 }
 
 // 更新底部状态提示

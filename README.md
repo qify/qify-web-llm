@@ -75,7 +75,7 @@ npm start
 | 画世界资讯 | `/news.html` | 数据库资讯列表 + 接口链接 |
 | 作品图鉴 | `/gallery.html` | 作品卡片列表（图片地址存库） |
 | AI 陪画助手 | `/ai-chat.html` | 多轮对话、会话持久化、流式输出、上下文压缩、Markdown 渲染 |
-| 在线客服 | `/customer-service.html` | 客服人设 + 硅基流动/七牛热切换 |
+| 在线客服 | `/customer-service.html` | 画世界客服人设（账号/投稿/版权/会员/活动），硅基流动与七牛热切换 |
 | 绘画知识库 | `/knowledge.html` | 文件上传解析、切块向量化、RAG 检索问答 |
 | 作品识别 | `/vision.html` | 上传图片，视觉模型输出描述 |
 | 语音提问 | `/asr.html` | 上传音频或现场录音转文字 |

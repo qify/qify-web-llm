@@ -445,3 +445,20 @@
                          "qfy_likes": 8526, "qfy_publish_date": "2026-11-19" }] } }
   ```
 - **修改时间：** 2026-11-27 23:00:17
+
+---
+
+## 2026-11-27 23:20:00 变更：/api/service 客服人设改为画世界
+
+- **接口路径：** `/api/service`
+- **HTTP 方法：** POST
+- **请求参数：** 不变
+  ```json
+  {"provider":"siliconflow","messages":[{"role":"user","content":"投稿审核要多久？"}]}
+  ```
+- **变更说明：** 仅替换服务端 system 人设，由「中华美食街客服」改为「画世界绘画社区客服」，回答范围改为五类：账号（注册/登录/实名）、作品投稿与审核（JPG/PNG、单图 20MB、审核约 2 小时）、版权与举报（原创声明、举报侵权 3 个工作日）、会员与画币（月卡 18 元/季卡 48 元/年卡 168 元、1 元=10 画币、充值不退款）、活动与挑战赛（每月 1 日开赛、榜单每周一更新）；五类以外礼貌拒答并引导到「我的-意见反馈」。请求与响应结构、错误码均无变化。
+- **响应示例：** 无变化
+  ```json
+  {"code":0,"msg":"回复成功","data":{"reply":"投稿支持 JPG/PNG……","provider":"siliconflow","providerLabel":"硅基流动","model":"deepseek-ai/DeepSeek-V4-Flash","usage":{"prompt_tokens":320,"completion_tokens":86,"total_tokens":406}}}
+  ```
+- **修改时间：** 2026-11-27 23:20:00
