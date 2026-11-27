@@ -631,21 +631,6 @@
   font-weight: bold;
 }
 
-.qfy_pro_gender {
-  color: #2f9bff;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 1;
-}
-
-.qfy_pro_lv {
-  font-size: 10px;
-  color: #9a9a9a;
-  background: #f2f2f2;
-  border-radius: 4px;
-  padding: 1px 6px;
-}
-
 .qfy_pro_sign {
   font-size: 13px;
   color: #999;
@@ -685,11 +670,21 @@
   background: #f5f6f7;
 }
 
-/* 集市图标：原版为青绿色，用遮罩改色 */
+/* 集市图标：青绿色购物车，直接使用原版截图裁切图 */
 .qfy_row_icon_market {
-  background-color: #3ec7b8;
-  -webkit-mask: url(../images/art/icons_svg/pro-market.svg) center / contain no-repeat;
-  mask: url(../images/art/icons_svg/pro-market.svg) center / contain no-repeat;
+  background-image: url(../images/art/market.png);
+  background-size: 26px 26px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 昵称右侧徽标（性别 + 等级皇冠 + LV0），原版截图裁切 */
+.qfy_pro_badges {
+  width: 105px;
+  height: 28px;
+  margin-left: 2px;
+  background: url(../images/art/name-badges.png) center / contain no-repeat;
+  flex-shrink: 0;
 }
 
 /* 分组小标题（课程实践入口） */
