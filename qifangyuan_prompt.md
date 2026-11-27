@@ -306,3 +306,16 @@ sk-****（七牛新 Key，已写入 backend/.env，未记录明文）
 4. 数据切换：qfy_gallery 增加 qfy_author、qfy_likes 字段并替换为 10 幅画世界作品（图片改为本地路径）；qfy_news 10 条改为画世界资讯（版本更新、大赛、访谈、教程等）。
 5. 首页改为画世界主题并补齐全部页面入口；README 功能清单与项目简介同步更新。
 6. 实测：/api/gallery 返回 10 条含作者点赞的作品；7 个页面与图片、样式资源均返回 200；art.js 语法检查通过。
+
+---
+
+**时间：** 2026-11-27 23:13:14
+**大模型：** DeepSeek-V4.1-Flash
+**提示词全文：**
+
+消息页的图标你没同步过来，还有，这个项目的在线客服是只需要有这一个功能吗
+
+**执行内容：**
+1. 把参考项目 img/signal 下的 iconfont.ttf / woff / woff2 复制到 frontend/fonts/，在 css/art.css 增加 @font-face 与 .qfy_hjicon 系列图标类（首页/消息/我的/画笔/搜索，以及 @我的、评论、粉丝、礼物、推荐、赞、群系统、通知 8 个消息图标）。
+2. art-message.html 的 8 行消息图标由 emoji 改为 iconfont 字形；art-index/art-feed/art-message/art-profile/art-search 底部中央创作按钮改为 iconfont 画笔图标。
+3. 浏览器实测 art-message.html：8 个图标全部渲染为矢量字形、底部 5 个 Tab 与蓝色画笔按钮正常、无字体加载错误（PASS）。

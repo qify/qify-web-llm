@@ -2,6 +2,41 @@
 姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-27 | 大模型：DeepSeek-V4.1-Flash
 */
 
+/* ===== 画世界字体图标（来源：画世界原版 iconfont 字体，文件位于 fonts/） ===== */
+@font-face {
+  font-family: "qfy_hjicon";
+  src: url('../fonts/iconfont.woff2') format('woff2'),
+       url('../fonts/iconfont.woff') format('woff'),
+       url('../fonts/iconfont.ttf') format('truetype');
+}
+
+.qfy_hjicon {
+  font-family: "qfy_hjicon" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* ---- 图标语义映射 ---- */
+.qfy_hjicon_tab_home::before      { content: "\e60f"; } /* 首页（房子） */
+.qfy_hjicon_tab_msg::before       { content: "\e604"; } /* 消息（气泡） */
+.qfy_hjicon_tab_mine::before      { content: "\e605"; } /* 我的（人形） */
+.qfy_hjicon_tab_create::before    { content: "\e603"; } /* 发布（画笔） */
+.qfy_hjicon_search::before        { content: "\e60e"; } /* 搜索（放大镜） */
+.qfy_hjicon_msg_at::before        { content: "\e606"; } /* @我的 */
+.qfy_hjicon_msg_comment::before   { content: "\e607"; } /* 评论 */
+.qfy_hjicon_msg_fans::before      { content: "\e608"; } /* 粉丝 */
+.qfy_hjicon_msg_gift::before      { content: "\e609"; } /* 礼物 */
+.qfy_hjicon_msg_recommend::before { content: "\e60a"; } /* 推荐 */
+.qfy_hjicon_msg_like::before      { content: "\e60b"; } /* 喜欢 */
+.qfy_hjicon_msg_group::before     { content: "\e60c"; } /* 群聊 */
+.qfy_hjicon_msg_notice::before    { content: "\e60d"; } /* 通知 */
+
 /* ===== 画世界移动端页面公共样式（类名统一 qfy_ 前缀） ===== */
 * {
   margin: 0;
@@ -677,12 +712,11 @@
   width: 26px;
   height: 26px;
   margin-right: 14px;
-  border-radius: 8px;
-  background: #eef3f9;
+  color: #4a4a4a;
+  font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
   flex-shrink: 0;
 }
 
@@ -829,7 +863,7 @@
   border-radius: 50%;
   background: linear-gradient(135deg, #2f9bff, #6dc4ff);
   color: #fff;
-  font-size: 22px;
+  font-size: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
