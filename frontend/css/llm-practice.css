@@ -1,0 +1,52 @@
+/*
+姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-28 | 大模型：DeepSeek-V4.1-Flash
+*/
+
+/* ===== LLM 实践展示：模块切换 Tab ===== */
+.qfy_practice_tabs {
+  display: flex;
+  gap: 8px;
+  padding: 10px 0 6px;
+  overflow-x: auto;
+}
+
+.qfy_practice_tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.qfy_practice_tabs .qfy_tab {
+  flex: 0 0 auto;
+  border: 1px solid #e6eef8;
+  background: #f7fbff;
+  border-radius: 15px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-family: inherit;
+  color: #2f9bff;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.qfy_practice_tabs .qfy_tab.qfy_tab_active {
+  background: #2f9bff;
+  border-color: #2f9bff;
+  color: #fff;
+}
+
+/* ===== 演示提示 ===== */
+#qfy_practice_hint {
+  padding: 8px 0;
+  text-align: left;
+  line-height: 1.6;
+}
+
+/* ===== 内嵌演示页面 ===== */
+.qfy_practice_frame {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 220px);
+  min-height: 460px;
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+  background: #fff;
+}

@@ -1,0 +1,39 @@
+/*
+姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-28 | 大模型：DeepSeek-V4.1-Flash
+*/
+
+/* ===== 作品识别页：补充 art.css 未覆盖的组件 ===== */
+.qfy_upload_box {
+  cursor: pointer;
+}
+
+/* 已选图片预览（art.css 的 img 规则会覆盖 hidden，此处补回） */
+.qfy_vision_img {
+  width: 100%;
+  max-height: 280px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: #f2f4f6;
+  object-fit: contain;
+}
+
+.qfy_vision_img[hidden] {
+  display: none;
+}
+
+/* 已有预览时收起虚线框，但保持可点击重新选择 */
+.qfy_upload_box:has(#qfy_vision_drop_text[hidden]) {
+  padding: 8px;
+  font-size: 11px;
+}
+
+.qfy_upload_box:has(#qfy_vision_drop_text[hidden])::after {
+  content: "点击可重新选择图片";
+  color: #2f9bff;
+}
+
+/* 拖拽进入的高亮态 */
+.qfy_upload_box_drag {
+  border-color: #2f9bff;
+  background: #f0f7ff;
+}

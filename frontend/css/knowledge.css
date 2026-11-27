@@ -1,0 +1,80 @@
+/*
+姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-28 | 大模型：DeepSeek-V4.1-Flash
+*/
+
+/* 绘画知识库补充样式：按钮间距、提示文字、文档列表、引用来源 */
+
+.qfy_upload_box + .qfy_btn_block,
+.qfy_textarea + .qfy_btn_block {
+  margin-top: 12px;
+}
+
+#qfy_kb_upload_tip,
+#qfy_kb_ask_tip {
+  padding: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #b0b8c4;
+  text-align: left;
+}
+
+/* 文档列表：把 JS 生成的表格行排成两行式移动端条目 */
+.qfy_kb_list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.qfy_kb_list tbody tr {
+  display: grid;
+  grid-template-columns: auto auto auto auto 1fr auto;
+  column-gap: 10px;
+  row-gap: 3px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.qfy_kb_list tbody tr:last-child {
+  border-bottom: none;
+}
+
+.qfy_kb_list td {
+  padding: 0;
+  border: none;
+  font-size: 12px;
+  color: #9aa4b2;
+}
+
+.qfy_kb_list td:nth-child(1) { grid-area: 2 / 1 / 3 / 2; font-size: 11px; color: #c3ccd8; }
+.qfy_kb_list td:nth-child(2) { grid-area: 1 / 1 / 2 / 6; font-size: 14px; font-weight: bold; color: #333; word-break: break-all; }
+.qfy_kb_list td:nth-child(3) { grid-area: 2 / 2 / 3 / 3; }
+.qfy_kb_list td:nth-child(4) { grid-area: 2 / 3 / 3 / 4; }
+.qfy_kb_list td:nth-child(5) { grid-area: 2 / 4 / 3 / 5; }
+.qfy_kb_list td:nth-child(5)::before { content: "切块 "; }
+.qfy_kb_list td:nth-child(6) { grid-area: 2 / 5 / 3 / 6; font-size: 11px; white-space: nowrap; }
+.qfy_kb_list td:nth-child(7) { grid-area: 1 / 6 / 2 / 7; justify-self: end; }
+.qfy_kb_list td.qfy_kb_empty { grid-area: 1 / 1 / 3 / 7; padding: 30px 0; text-align: center; font-size: 13px; color: #bbb; }
+
+.qfy_kb_del {
+  border: none;
+  border-radius: 10px;
+  background: #fff5f5;
+  color: #ff6b6b;
+  font-size: 11px;
+  font-family: inherit;
+  padding: 4px 10px;
+}
+
+.qfy_kb_src_title { margin-top: 14px; }
+
+.qfy_kb_source {
+  background: #fafcff;
+  border: 1px solid #eef4fb;
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+}
+
+.qfy_kb_source:last-child { margin-bottom: 0; }
+.qfy_kb_source_head { font-size: 12px; color: #2f9bff; margin-bottom: 4px; }
+.qfy_kb_source_text { font-size: 12px; line-height: 1.6; color: #7c8797; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }

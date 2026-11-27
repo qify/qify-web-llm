@@ -1,0 +1,50 @@
+/*
+姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-28 | 大模型：DeepSeek-V4.1-Flash
+*/
+/* AI 陪画助手：补充 art.css 未覆盖的动态类（会话列表 / 图标按钮 / Markdown） */
+.qfy_cs_page { padding-bottom: 0; }
+.qfy_cs_sessions {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 14px; background: #fff; border-bottom: 1px solid #f2f2f2;
+}
+.qfy_cs_sessions .qfy_chip_list { flex: 1; min-width: 0; padding: 0; }
+.qfy_session_item {
+  display: flex; align-items: center; gap: 4px; flex: 0 0 auto;
+  border: 1px solid #e6eef8; background: #f7fbff; border-radius: 15px; padding: 3px 8px;
+}
+.qfy_session_title {
+  max-width: 108px; border: none; background: none; padding: 0;
+  font-family: inherit; font-size: 12px; color: #2f9bff;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.qfy_session_ops { display: flex; gap: 2px; }
+.qfy_icon_btn {
+  width: 18px; height: 18px; border: none; border-radius: 50%;
+  background: #e8f2ff; color: #2f9bff; font-size: 11px;
+  font-family: inherit; line-height: 1; padding: 0;
+}
+.qfy_icon_danger { background: #ffefef; color: #e5484d; }
+.qfy_session_active { background: #2f9bff; border-color: #2f9bff; }
+.qfy_session_active .qfy_session_title { color: #fff; }
+.qfy_session_active .qfy_icon_btn { background: rgba(255, 255, 255, 0.28); color: #fff; }
+.qfy_cs_input_row .qfy_btn { height: 40px; padding: 0 12px; font-size: 13px; flex-shrink: 0; }
+.qfy_cs_input_row .qfy_btn:disabled { opacity: 0.5; }
+
+/* 气泡内 Markdown */
+.qfy_md { white-space: normal; }
+.qfy_md p + p { margin-top: 6px; }
+.qfy_md h3, .qfy_md h4, .qfy_md h5 { font-size: 14px; margin: 6px 0 4px; color: #333; }
+.qfy_md ul { padding-left: 16px; margin: 4px 0; }
+.qfy_md li { list-style: disc; font-size: 14px; }
+.qfy_md strong { color: #1677d2; }
+.qfy_md_inline {
+  background: #f2f4f6; border-radius: 4px; padding: 1px 4px;
+  font-size: 13px; color: #2f9bff;
+}
+.qfy_md_pre {
+  position: relative; background: #f7f9fc; border: 1px solid #e6eef8;
+  border-radius: 8px; padding: 22px 8px 8px; margin: 6px 0;
+  overflow-x: auto; white-space: pre;
+}
+.qfy_md_pre code { font-size: 12px; line-height: 1.6; color: #333; }
+.qfy_md_lang { position: absolute; top: 4px; left: 8px; font-size: 11px; color: #9aa4b2; }

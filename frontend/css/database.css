@@ -1,0 +1,41 @@
+/*
+姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-28 | 大模型：DeepSeek-V4.1-Flash
+*/
+
+/* ===== 数据库连接页：补充 art.css 未覆盖的提示条样式 ===== */
+.qfy_msg {
+  margin: 0 14px 10px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #6b7583;
+  background: #f2f4f6;
+  word-break: break-word;
+}
+
+/* 无提示内容时不占位 */
+.qfy_msg:empty {
+  display: none;
+}
+
+/* 连接成功 */
+.qfy_msg_success {
+  color: #1a9e5f;
+  background: #eefaf3;
+  border: 1px solid #cdeedd;
+}
+
+/* 连接失败 */
+.qfy_msg_error {
+  color: #e5484d;
+  background: #fff1f0;
+  border: 1px solid #ffdbd9;
+}
+
+/* 连接中 */
+.qfy_msg_loading {
+  color: #2f9bff;
+  background: #f0f7ff;
+  border: 1px solid #dcecfd;
+}

@@ -1,54 +1,49 @@
-<!--
-姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-25 | 大模型：DeepSeek-V4.1-Flash
+﻿<!--
+姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-28 | 大模型：DeepSeek-V4.1-Flash
 -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>网页设计课程作业 - 图像识别</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>画世界 - 作品识别</title>
+  <link rel="stylesheet" href="css/art.css">
+  <link rel="stylesheet" href="css/vision.css">
 </head>
-<body>
-  <!-- 姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-23 | 大模型：DeepSeek-V4.1-Flash -->
-
-  <main class="qfy_page">
-    <header class="qfy_hero">
-      <div class="qfy_card qfy_card_wide">
-        <p class="qfy_eyebrow">视觉大模型 · 图像识别</p>
-        <h1 class="qfy_title qfy_title_sm">图像识别</h1>
-        <p class="qfy_subtitle">上传图片，由视觉大模型返回画面描述</p>
-
-        <div class="qfy_api_box">
-          <span class="qfy_api_label">后端接口</span>
-          <a class="qfy_api_link" href="/api/vision" target="_blank">POST /api/vision</a>
-        </div>
-
-        <div class="qfy_vision_upload">
-          <label class="qfy_vision_drop" id="qfy_vision_drop" for="qfy_vision_file">
-            <input class="qfy_vision_file" id="qfy_vision_file" type="file" accept="image/*">
-            <span class="qfy_vision_drop_text" id="qfy_vision_drop_text">点击选择图片（jpg / png / webp / gif，≤ 10MB）</span>
-            <img class="qfy_vision_preview" id="qfy_vision_preview" alt="图片预览" hidden>
-          </label>
-          <button class="qfy_btn" id="qfy_vision_btn" type="button">识别图片</button>
-        </div>
-
-        <p class="qfy_kb_hint" id="qfy_vision_tip">选择图片后点击「识别图片」，结果会同时输出到浏览器控制台。</p>
-
-        <div class="qfy_kb_answer" id="qfy_vision_result" hidden>
-          <p class="qfy_kb_answer_label">描述</p>
-          <p class="qfy_kb_answer_text" id="qfy_vision_desc"></p>
-          <p class="qfy_kb_hint" id="qfy_vision_meta"></p>
-        </div>
-
-        <a class="qfy_back_link" href="index.html">← 返回首页</a>
-      </div>
+<body class="qfy_art_body">
+  <div class="qfy_main">
+    <header class="qfy_nav_bar">
+      <a class="qfy_nav_back" href="art-profile.html">‹</a>
+      <span class="qfy_nav_title">作品识别</span>
+      <span class="qfy_nav_side"></span>
     </header>
 
-    <footer class="qfy_footer">
-      <p>© 2026 齐方圆 · 24001011031 · 网页设计课程作业</p>
-    </footer>
-  </main>
+    <p class="qfy_cs_api_line">后端接口：
+      <a class="qfy_cs_api_link" href="/api/vision" target="_blank">POST /api/vision</a>
+    </p>
+
+    <div class="qfy_card_block">
+      <p class="qfy_sec_title">上传作品图片<span class="qfy_sec_sub">jpg / png / webp / gif，≤ 10MB</span></p>
+      <label class="qfy_upload_box" for="qfy_vision_file">
+        <input type="file" id="qfy_vision_file" accept="image/*">
+        <span id="qfy_vision_drop_text">点击选择图片</span>
+      </label>
+      <img class="qfy_vision_img" id="qfy_vision_preview" alt="图片预览" hidden>
+    </div>
+
+    <div class="qfy_card_block">
+      <button class="qfy_btn qfy_btn_block" id="qfy_vision_btn" type="button">识别图片</button>
+      <p class="qfy_empty" id="qfy_vision_tip">选择图片后点击「识别图片」，结果会同时输出到浏览器控制台。</p>
+    </div>
+
+    <div class="qfy_card_block" id="qfy_vision_result" hidden>
+      <p class="qfy_sec_title">描述</p>
+      <p class="qfy_result" id="qfy_vision_desc"></p>
+      <p class="qfy_news_meta" id="qfy_vision_meta"></p>
+    </div>
+
+    <footer class="qfy_art_footer">© 2026 齐方圆 · 24001011031 · 画世界</footer>
+  </div>
 
   <script src="js/origin_guard.js"></script>
   <script src="js/vision.js"></script>

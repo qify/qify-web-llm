@@ -1,0 +1,41 @@
+/*
+姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-28 | 大模型：DeepSeek-V4.1-Flash
+*/
+
+/* 画世界资讯页补充样式：JS 动态生成的列表卡片、标题行与加载状态 */
+
+.qfy_news_item {
+  background: #fff;
+  border-radius: 12px;
+  margin: 10px 14px;
+  padding: 14px;
+}
+
+.qfy_news_head {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.qfy_news_head .qfy_news_title {
+  flex: 1;
+  min-width: 0;
+}
+
+.qfy_news_head .qfy_tag {
+  flex-shrink: 0;
+}
+
+.qfy_news_item .qfy_news_meta {
+  gap: 6px;
+}
+
+.qfy_status {
+  padding: 4px 14px 0;
+  font-size: 12px;
+  color: #b0b8c4;
+}
+
+.qfy_status_error {
+  color: #e5484d;
+}

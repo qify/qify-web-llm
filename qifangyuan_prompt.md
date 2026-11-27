@@ -445,3 +445,19 @@ sk-****（七牛新 Key，已写入 backend/.env，未记录明文）
 1. 从用户截图分别裁取：集市青绿购物车（76×76 → images/art/market.png）、昵称右侧「蓝色性别符号 + 灰色皇冠 + LV0 徽章」整条（240×64 → images/art/name-badges.png）。
 2. art-profile.html 名字行改为昵称 + 单个徽标图片；art.css 用 .qfy_pro_badges（105×28）与 .qfy_row_icon_market（26px 背景）替换此前的文字符号与 mask 上色方案，并删除不再使用的 .qfy_pro_gender / .qfy_pro_lv。
 3. 浏览器实测：徽标比例与对齐、购物车颜色与清晰度均与原版一致。
+
+---
+
+**时间：** 2026-11-27 23:57:37
+**大模型：** DeepSeek-V4.1-Flash
+**提示词全文：**
+
+AI能力下方所有页面样式也改成和其他页面一样
+
+**执行内容：**
+1. art.css 新增通用内容页组件：qfy_card_block、qfy_sec_title/sub、qfy_field/label/input/textarea、qfy_btn(_ghost/_row/_block)、qfy_upload_box、qfy_file_item、qfy_result、qfy_tag、qfy_empty、qfy_chip(_list/_active)、qfy_news_card/title/meta/summary/content。
+2. 7 个页面统一改为 480px 移动端画布 + qfy_nav_bar 返回栏 + 接口行 + 白色卡片结构，JS 依赖的 id 全部保留、未改动任何 JS：
+   ai-chat（聊天全屏布局，会话 chips）、knowledge（上传/文档/提问/回答）、vision（上传/预览/识别结果）、asr（上传/录音/播放/转写）、news（资讯卡片列表）、llm-practice（Tab + iframe）、database（连接表单 + 成功/失败提示）。
+3. 新增页面级样式文件：css/ai-chat.css、knowledge.css、vision.css、asr.css、news.css、llm-practice.css、database.css（均 qfy_ 前缀，承接 JS 动态生成的类）。
+4. 统一页脚文案为「© 2026 齐方圆 · 24001011031 · 画世界」。
+5. 校验：7 页 JS 引用的 id 全部存在、页面与新增 CSS 均 200；浏览器实测 ai-chat / knowledge / news / llm-practice 渲染与交互正常。

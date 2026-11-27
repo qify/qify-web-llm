@@ -1,64 +1,41 @@
 <!--
-姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-25 | 大模型：DeepSeek-V4.1-Flash
+姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-28 | 大模型：DeepSeek-V4.1-Flash
 -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>网页设计课程作业 - AI 聊天</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>画世界 - AI 陪画助手</title>
+  <link rel="stylesheet" href="css/art.css">
+  <link rel="stylesheet" href="css/ai-chat.css">
 </head>
-<body>
-  <!-- 姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-25 | 大模型：DeepSeek-V4.1-Flash -->
-
-  <main class="qfy_page">
-    <header class="qfy_hero">
-      <div class="qfy_card qfy_card_wide">
-        <p class="qfy_eyebrow">硅基流动 · AI 聊天</p>
-        <h1 class="qfy_title qfy_title_sm">AI 聊天</h1>
-
-        <div class="qfy_api_box">
-          <span class="qfy_api_label">后端接口</span>
-          <a class="qfy_api_link" href="/api/ai/chat/stream" target="_blank">POST /api/ai/chat/stream</a>
-          <a class="qfy_api_link" href="/api/ai/sessions" target="_blank">GET /api/ai/sessions</a>
-        </div>
-
-        <div class="qfy_chat_layout">
-          <!-- 会话列表 -->
-          <aside class="qfy_chat_side">
-            <button class="qfy_btn qfy_side_btn" id="qfy_new_session" type="button">＋ 新建对话</button>
-            <ul class="qfy_session_list" id="qfy_session_list"></ul>
-            <p class="qfy_side_tip">会话保存在 MySQL，可重命名、删除、回放历史。</p>
-          </aside>
-
-          <!-- 对话区 -->
-          <section class="qfy_chat_main">
-            <div class="qfy_chat_window">
-              <div class="qfy_chat_messages" id="qfy_chat_messages"></div>
-
-              <div class="qfy_chat_input_row">
-                <textarea class="qfy_chat_input" id="qfy_chat_input"
-                          placeholder="输入你的问题，Enter 发送，Shift + Enter 换行"></textarea>
-                <div class="qfy_chat_btns">
-                  <button class="qfy_btn" id="qfy_chat_send" type="button">发送</button>
-                  <button class="qfy_btn qfy_btn_ghost" id="qfy_chat_stop" type="button" disabled>停止</button>
-                </div>
-              </div>
-
-              <p class="qfy_chat_tip" id="qfy_chat_status">模型：deepseek-ai/DeepSeek-V4-Flash · 流式输出</p>
-            </div>
-          </section>
-        </div>
-
-        <a class="qfy_back_link" href="index.html">← 返回首页</a>
-      </div>
+<body class="qfy_art_body">
+  <div class="qfy_cs_page">
+    <header class="qfy_nav_bar">
+      <a class="qfy_nav_back" href="art-profile.html">‹</a>
+      <span class="qfy_nav_title">AI 陪画助手</span>
+      <span class="qfy_nav_side"></span>
     </header>
 
-    <footer class="qfy_footer">
-      <p>© 2026 齐方圆 · 24001011031 · 网页设计课程作业</p>
-    </footer>
-  </main>
+    <p class="qfy_cs_api_line">后端接口：<a class="qfy_cs_api_link" href="/api/ai/chat/stream" target="_blank">POST /api/ai/chat/stream</a></p>
+
+    <section class="qfy_cs_sessions">
+      <button class="qfy_chip" id="qfy_new_session" type="button">＋ 新建会话</button>
+      <ul class="qfy_chip_list" id="qfy_session_list"></ul>
+    </section>
+
+    <div class="qfy_cs_msgs" id="qfy_chat_messages"></div>
+
+    <div class="qfy_cs_input_row">
+      <textarea class="qfy_cs_input" id="qfy_chat_input"
+                placeholder="输入你的问题，Enter 发送，Shift + Enter 换行"></textarea>
+      <button class="qfy_cs_send" id="qfy_chat_send" type="button">发送</button>
+      <button class="qfy_btn qfy_btn_ghost" id="qfy_chat_stop" type="button" disabled>停止</button>
+    </div>
+
+    <p class="qfy_cs_status" id="qfy_chat_status">模型：deepseek-ai/DeepSeek-V4-Flash · 流式输出</p>
+  </div>
 
   <script src="js/origin_guard.js"></script>
   <script src="js/ai_chat.js"></script>

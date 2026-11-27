@@ -1,0 +1,46 @@
+/*
+姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-28 | 大模型：DeepSeek-V4.1-Flash
+说明：语音提问页（asr.html）补充样式，仅在本页引入，不影响 art.css
+*/
+
+/* 上传区：选音频框与整行按钮之间留出间距 */
+.qfy_upload_box + .qfy_btn_block {
+  margin-top: 10px;
+}
+
+/* 录音提示文案 */
+.qfy_asr_record_tip {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #9aa4b2;
+  text-align: center;
+}
+
+/* 音频播放器：宽度铺满卡片（不设 display，保留 hidden 属性生效） */
+.qfy_asr_audio {
+  width: 100%;
+  margin: 2px 0 10px;
+}
+
+/* 上传过程中按钮禁用反馈 */
+.qfy_btn:disabled {
+  opacity: 0.6;
+}
+
+/* 录音中：红色 + 呼吸脉冲，明显区别于普通按钮 */
+.qfy_btn.qfy_btn_recording {
+  background: #ff4d4f;
+  color: #fff;
+  animation: qfy_asr_pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes qfy_asr_pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 77, 79, 0.55);
+  }
+
+  50% {
+    box-shadow: 0 0 0 9px rgba(255, 77, 79, 0);
+  }
+}

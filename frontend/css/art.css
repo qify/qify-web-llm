@@ -933,6 +933,214 @@
   color: #b0b8c4;
 }
 
+/* ===== 内容页通用组件（AI 能力等二级页面共用） ===== */
+.qfy_card_block {
+  background: #fff;
+  border-radius: 12px;
+  margin: 10px 14px;
+  padding: 14px;
+}
+
+.qfy_sec_title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.qfy_sec_sub {
+  font-size: 12px;
+  font-weight: normal;
+  color: #b0b8c4;
+}
+
+.qfy_field {
+  margin-bottom: 12px;
+}
+
+.qfy_field_label {
+  display: block;
+  font-size: 12px;
+  color: #9aa4b2;
+  margin-bottom: 6px;
+}
+
+.qfy_input {
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: #f2f4f6;
+  padding: 0 12px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #333;
+  outline: none;
+}
+
+.qfy_textarea {
+  width: 100%;
+  min-height: 84px;
+  border: none;
+  border-radius: 10px;
+  background: #f2f4f6;
+  padding: 10px 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: inherit;
+  color: #333;
+  outline: none;
+  resize: vertical;
+}
+
+.qfy_btn {
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  background: #2f9bff;
+  color: #fff;
+  font-size: 14px;
+  font-family: inherit;
+  padding: 0 18px;
+}
+
+.qfy_btn_ghost {
+  background: #f2f4f6;
+  color: #555;
+}
+
+.qfy_btn_row {
+  display: flex;
+  gap: 10px;
+}
+
+.qfy_btn_block {
+  width: 100%;
+}
+
+.qfy_upload_box {
+  display: block;
+  border: 1px dashed #d5dde8;
+  border-radius: 10px;
+  padding: 22px 12px;
+  text-align: center;
+  font-size: 13px;
+  color: #9aa4b2;
+  background: #fafcff;
+}
+
+.qfy_upload_box input[type="file"] {
+  display: none;
+}
+
+.qfy_file_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 13px;
+  color: #555;
+}
+
+.qfy_result {
+  background: #f7fbff;
+  border: 1px solid #e3effc;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #333;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.qfy_tag {
+  display: inline-block;
+  font-size: 11px;
+  color: #2f9bff;
+  background: #f0f7ff;
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.qfy_empty {
+  padding: 30px 0;
+  text-align: center;
+  font-size: 13px;
+  color: #bbb;
+}
+
+.qfy_chip_list {
+  display: flex;
+  gap: 8px;
+  padding: 8px 0;
+  overflow-x: auto;
+}
+
+.qfy_chip_list::-webkit-scrollbar {
+  display: none;
+}
+
+.qfy_chip {
+  flex: 0 0 auto;
+  border: 1px solid #e6eef8;
+  background: #f7fbff;
+  border-radius: 15px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-family: inherit;
+  color: #2f9bff;
+  white-space: nowrap;
+}
+
+.qfy_chip_active {
+  background: #2f9bff;
+  border-color: #2f9bff;
+  color: #fff;
+}
+
+.qfy_news_card {
+  background: #fff;
+  border-radius: 12px;
+  margin: 10px 14px;
+  padding: 14px;
+}
+
+.qfy_news_title {
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.5;
+  color: #333;
+}
+
+.qfy_news_meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #b0b8c4;
+}
+
+.qfy_news_summary {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #777;
+}
+
+.qfy_news_content {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #555;
+}
+
 /* ===== 在线客服（沿用画世界移动端画布与配色） ===== */
 .qfy_cs_page {
   display: flex;
