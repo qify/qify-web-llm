@@ -256,3 +256,40 @@ INSERT INTO qfy_chat_message (qfy_session_id, qfy_role, qfy_content, qfy_tokens)
 (8, 'assistant', '建议按「架构图 -> 普通对话 -> 会话持久化 -> 上下文压缩 -> 异常处理」的顺序演示，先讲清数据流，再逐个功能点当场操作。', 58);
 ```
 
+---
+
+## 2026-11-27 主题切换：画世界（作品表扩展字段 + 资讯/作品数据替换）
+
+```sql
+-- 1. 作品表新增作者与点赞数字段
+ALTER TABLE qfy_gallery
+  ADD COLUMN qfy_author VARCHAR(40) NOT NULL DEFAULT '画世界' AFTER qfy_category,
+  ADD COLUMN qfy_likes INT UNSIGNED NOT NULL DEFAULT 0 AFTER qfy_author;
+
+-- 2. 作品数据（图片为项目内本地素材，路径相对 frontend/）
+UPDATE qfy_gallery SET qfy_title='银蓝誓约', qfy_description='白发双人插画，冷调银蓝配色，突出衣料纹理与羽毛元素。', qfy_image_url='images/art/cover1.jpg', qfy_category='二次元', qfy_author='青梧', qfy_likes=8526 WHERE qfy_id=21;
+UPDATE qfy_gallery SET qfy_title='白夜骑士', qfy_description='银蓝礼服与长剑的局部特写，注重手部与配饰的细节刻画。', qfy_image_url='images/art/feed1.jpg', qfy_category='二次元', qfy_author='无和芒空', qfy_likes=6218 WHERE qfy_id=22;
+UPDATE qfy_gallery SET qfy_title='微光少年', qfy_description='逆光下的少年半身像，用高对比光影塑造轮廓。', qfy_image_url='images/art/1.jpg', qfy_category='人物', qfy_author='山与海', qfy_likes=4870 WHERE qfy_id=23;
+UPDATE qfy_gallery SET qfy_title='银发绅士', qfy_description='银白发与米白西装的立绘练习，面料质感是这次的重点。', qfy_image_url='images/art/5.jpg', qfy_category='人物', qfy_author='小鱼干', qfy_likes=5521 WHERE qfy_id=24;
+UPDATE qfy_gallery SET qfy_title='山野来信', qfy_description='远山与草地的风景速涂，练习空气透视与色温变化。', qfy_image_url='images/art/cover2.jpg', qfy_category='风景', qfy_author='松浦', qfy_likes=3210 WHERE qfy_id=25;
+UPDATE qfy_gallery SET qfy_title='林间清晨', qfy_description='晨雾中的林间小道，以低饱和绿灰铺陈氛围。', qfy_image_url='images/art/cover3.jpg', qfy_category='风景', qfy_author='梓秋', qfy_likes=2744 WHERE qfy_id=26;
+UPDATE qfy_gallery SET qfy_title='夏日练习', qfy_description='夏日主题的人物速写，尝试更松弛的线条。', qfy_image_url='images/art/cover4.jpg', qfy_category='人物', qfy_author='星瑞羽笑', qfy_likes=1968 WHERE qfy_id=27;
+UPDATE qfy_gallery SET qfy_title='速写手记', qfy_description='日常速写合集，保留草稿线条与修改痕迹。', qfy_image_url='images/art/feed2.jpg', qfy_category='草稿', qfy_author='泠洛', qfy_likes=1420 WHERE qfy_id=28;
+UPDATE qfy_gallery SET qfy_title='光影练习', qfy_description='针对侧光与阴影边缘的专项练习。', qfy_image_url='images/art/feed3.jpg', qfy_category='草稿', qfy_author='白露', qfy_likes=987 WHERE qfy_id=29;
+UPDATE qfy_gallery SET qfy_title='夜色渐变', qfy_description='夜景配色实验，记录同一场景在不同时间段的色彩变化。', qfy_image_url='images/art/feed4.jpg', qfy_category='色彩', qfy_author='鹤川', qfy_likes=2333 WHERE qfy_id=30;
+
+-- 3. 资讯数据替换为画世界主题（10 条）
+UPDATE qfy_news SET qfy_title='画世界 V6.2 发布：笔刷引擎升级，支持压感曲线自定义', qfy_summary='新版重点优化笔刷响应速度，并新增压感曲线调节面板，手绘线条更接近纸笔手感。', qfy_content='本次更新覆盖移动端与桌面端：笔刷引擎重写后延迟降低约 30%，新增压感曲线自定义、图层组混合模式与参考图取色。用户可在设置中心查看完整更新日志。', qfy_source='画世界官方', qfy_author='画世界团队', qfy_category='版本更新', qfy_publish_time='2026-11-27 09:00:00' WHERE qfy_id=21;
+UPDATE qfy_news SET qfy_title='冬季绘画大赛「雪落无声」开启征稿', qfy_summary='主题为冬日与静谧，投稿截止 12 月 20 日，设人气奖与评委奖各 10 名。', qfy_content='大赛分为插画与速写两个组别，单账号最多投稿 3 幅。作品需为原创，禁止 AI 直接生成后投稿，评审将从构图、色彩、叙事三方面打分。', qfy_source='画世界官方', qfy_author='活动运营组', qfy_category='活动', qfy_publish_time='2026-11-26 18:30:00' WHERE qfy_id=22;
+UPDATE qfy_news SET qfy_title='新人画家访谈：从临摹到原创的三百天', qfy_summary='专访站内创作者「青梧」，聊临摹方法、练习节奏与心态调整。', qfy_content='青梧分享了每日一小时的练习计划：前三个月只做结构临摹，之后开始半原创，最后进入完整创作。她建议新手不要过早追求完成度，先把形和色练稳。', qfy_source='画世界官方', qfy_author='内容编辑部', qfy_category='访谈', qfy_publish_time='2026-11-26 10:20:00' WHERE qfy_id=23;
+UPDATE qfy_news SET qfy_title='绘画教程上新：二次元人物衣褶的三种画法', qfy_summary='从圆柱体理解衣褶走向，配合三个可临摹的分解示例。', qfy_content='教程分为基础形、受力点与布料厚度三个部分，附带可下载的线稿练习包。建议先画结构再上色，避免颜色掩盖形体问题。', qfy_source='画世界课堂', qfy_author='白露', qfy_category='教程', qfy_publish_time='2026-11-25 20:00:00' WHERE qfy_id=24;
+UPDATE qfy_news SET qfy_title='「每日一画」打卡活动数据公布：连续打卡人数创新高', qfy_summary='本月共有 1.2 万名用户参与打卡，平均连续天数 11 天。', qfy_content='官方表示后续会为连续打卡 30 天的用户发放限定头像框，并在发现页增加按打卡主题聚合的入口。', qfy_source='画世界官方', qfy_author='活动运营组', qfy_category='活动', qfy_publish_time='2026-11-25 14:10:00' WHERE qfy_id=25;
+UPDATE qfy_news SET qfy_title='移动端手势操作优化：双指旋转与快速取色', qfy_summary='画布支持双指旋转，长按唤出取色环，减少工具切换次数。', qfy_content='本次手势更新适用于 6.1 及以上版本，可在设置中心的「手势与快捷操作」中查看示意图并自定义灵敏度。', qfy_source='画世界官方', qfy_author='画世界团队', qfy_category='版本更新', qfy_publish_time='2026-11-24 16:45:00' WHERE qfy_id=26;
+UPDATE qfy_news SET qfy_title='作品打分功能上线：获得同好反馈更直接', qfy_summary='创作者可开启匿名打分，读者从构图、色彩、完成度三个维度评价。', qfy_content='打分结果仅创作者可见，避免公开排名带来的压力。开启入口位于「我的 - 作品打分」，可随时关闭。', qfy_source='画世界官方', qfy_author='产品团队', qfy_category='功能', qfy_publish_time='2026-11-24 09:30:00' WHERE qfy_id=27;
+UPDATE qfy_news SET qfy_title='色彩专题：夜色插画的五种配色思路', qfy_summary='以蓝紫、青橙、低饱和灰调为例，拆解夜景打光逻辑。', qfy_content='文章给出五组可直接套用的色板，并说明主光源、环境光与反射光的关系。建议先用小色块铺大关系，再补细节。', qfy_source='画世界课堂', qfy_author='鹤川', qfy_category='教程', qfy_publish_time='2026-11-23 19:00:00' WHERE qfy_id=28;
+UPDATE qfy_news SET qfy_title='创作者版权保护说明：水印与署名规范更新', qfy_summary='作品默认添加可见水印，支持自定义署名位置与透明度。', qfy_content='官方强调转载需获得作者授权，站内举报通道已与人工审核打通，确认侵权后将下架作品并限制账号功能。', qfy_source='画世界官方', qfy_author='社区治理组', qfy_category='公告', qfy_publish_time='2026-11-22 11:00:00' WHERE qfy_id=29;
+UPDATE qfy_news SET qfy_title='十二月创作主题预告：光与影', qfy_summary='下月主题聚焦光影关系，配套直播课与点评活动将同步开启。', qfy_content='主题页将提供参考图包与构图模板，直播课安排在每周三晚八点，点评活动面向所有投稿作品开放。', qfy_source='画世界官方', qfy_author='内容编辑部', qfy_category='活动', qfy_publish_time='2026-11-21 15:20:00' WHERE qfy_id=30;
+```
+
+> 说明：以上 UPDATE 使用本机实际自增 ID（21~30）。在新机器重建时，若两张表的自增起点不同，可改为按 `ORDER BY qfy_id` 的序号依次执行，效果等同。图片素材位于 `frontend/images/art/`，需随项目一起复制。
+

@@ -426,3 +426,22 @@
 
 ### 8. 兼容接口（原有）
 - `POST /api/chat` 保留不变：接收 `{ messages: [{role, content}] }`，不落库，返回 `data.reply`。新页面已统一使用 `/api/ai/*`。
+
+---
+
+## 2026-11-27 23:00:17 变更：/api/gallery 增加作者与点赞字段
+
+- **接口路径：** `/api/gallery`
+- **HTTP 方法：** GET
+- **变更说明：** 响应 `data.list` 中每条新增 `qfy_author`（作者）与 `qfy_likes`（点赞数），图片地址 `qfy_image_url` 改为项目内本地路径（如 `images/art/cover1.jpg`），供画世界首页瀑布流、发现页动态与搜索页使用。
+- **响应示例（节选）：**
+  ```json
+  { "code": 0, "msg": "查询成功",
+    "data": { "total": 10,
+              "list": [{ "qfy_id": 21, "qfy_title": "银蓝誓约",
+                         "qfy_description": "白发双人插画，冷调银蓝配色……",
+                         "qfy_image_url": "images/art/cover1.jpg",
+                         "qfy_category": "二次元", "qfy_author": "青梧",
+                         "qfy_likes": 8526, "qfy_publish_date": "2026-11-19" }] } }
+  ```
+- **修改时间：** 2026-11-27 23:00:17

@@ -1,0 +1,69 @@
+<!--
+姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-27 | 大模型：DeepSeek-V4.1-Flash
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>画世界 - 精选</title>
+  <link rel="stylesheet" href="css/art.css">
+</head>
+<body class="qfy_art_body">
+  <div class="qfy_main">
+    <!-- 顶部导航：搜索 + 分类 Tab -->
+    <header class="qfy_top_tabs">
+      <a class="qfy_top_search" href="art-search.html" title="搜索"></a>
+      <button class="qfy_top_tab qfy_active" type="button" data-cat="全部">精选</button>
+      <button class="qfy_top_tab" type="button" data-cat="二次元">二次元</button>
+      <button class="qfy_top_tab" type="button" data-cat="人物">人物</button>
+      <button class="qfy_top_tab" type="button" data-cat="风景">风景</button>
+      <button class="qfy_top_tab" type="button" data-cat="草稿">草稿</button>
+      <a class="qfy_top_tab" href="art-feed.html">最新</a>
+    </header>
+
+    <!-- 广告 Banner -->
+    <section class="qfy_banner" style="background-image:url(images/art/banner.jpg)">
+      <h2 class="qfy_banner_title">Deco SE 手绘板</h2>
+      <p class="qfy_banner_desc">手机/电脑都能画 · 适配手机屏幕 · 16K 压感</p>
+      <span class="qfy_banner_btn">点击了解 &gt;&gt;</span>
+      <span class="qfy_ad_tag">广告</span>
+    </section>
+
+    <!-- 分类入口 -->
+    <nav class="qfy_cats">
+      <a href="art-search.html">
+        <span class="qfy_cat_img" style="background:linear-gradient(160deg,#8a6f4d,#5c4630)">古风</span>
+      </a>
+      <a href="art-search.html">
+        <span class="qfy_cat_img" style="background:linear-gradient(160deg,#9bb0c1,#6a7f92)">绘画教程</span>
+      </a>
+      <a href="art-search.html">
+        <span class="qfy_cat_img" style="background:linear-gradient(160deg,#6fb3d8,#3a7fb0)">二次元</span>
+      </a>
+      <a href="art-search.html">
+        <span class="qfy_cat_img" style="background:linear-gradient(160deg,#4a4a52,#232327)">人物</span>
+      </a>
+    </nav>
+
+    <p id="qfy_art_hint" style="padding:0 14px 8px;font-size:12px;color:#b0b8c4"></p>
+
+    <!-- 瀑布流作品区（数据来自 /api/gallery） -->
+    <main class="qfy_waterfall" id="qfy_waterfall"></main>
+
+    <footer class="qfy_art_footer">© 2026 齐方圆 · 24001011031 · 画世界</footer>
+  </div>
+
+  <!-- 底部导航 -->
+  <nav class="qfy_tabbar">
+    <a class="qfy_active" href="art-index.html"><span class="qfy_tab_icon qfy_tab_home"></span>首页</a>
+    <a href="art-feed.html"><span class="qfy_tab_icon qfy_tab_discover"></span>发现</a>
+    <a href="art-challenge.html"><span class="qfy_tab_create">✎</span></a>
+    <a href="art-message.html"><span class="qfy_tab_icon qfy_tab_msg"></span>消息</a>
+    <a href="art-profile.html"><span class="qfy_tab_icon qfy_tab_mine"></span>我的</a>
+  </nav>
+
+  <script src="js/origin_guard.js"></script>
+  <script src="js/art.js"></script>
+</body>
+</html>

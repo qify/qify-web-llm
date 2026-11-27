@@ -1,0 +1,844 @@
+/*
+姓名：齐方圆 | 学号：24001011031 | 时间：2026-11-27 | 大模型：DeepSeek-V4.1-Flash
+*/
+
+/* ===== 画世界移动端页面公共样式（类名统一 qfy_ 前缀） ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.qfy_art_body {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f5f6f7;
+  color: #333;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+}
+
+.qfy_art_body a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.qfy_art_body ul,
+.qfy_art_body li {
+  list-style: none;
+}
+
+.qfy_art_body img {
+  display: block;
+  max-width: 100%;
+}
+
+.qfy_main {
+  padding-bottom: 70px;
+}
+
+/* ===== 顶部导航：搜索 + 分类 Tab ===== */
+.qfy_top_tabs {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 14px;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 10;
+  overflow-x: auto;
+}
+
+.qfy_top_search {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 2px solid #333;
+  position: relative;
+}
+
+.qfy_top_search::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 2px;
+  background: #333;
+  transform: rotate(45deg);
+  right: -5px;
+  bottom: -1px;
+}
+
+.qfy_top_tab {
+  font-size: 16px;
+  color: #666;
+  padding-bottom: 6px;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  cursor: pointer;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: inherit;
+}
+
+.qfy_top_tab.qfy_active {
+  color: #333;
+  font-weight: bold;
+  border-bottom-color: #2f9bff;
+}
+
+/* ===== 广告 Banner ===== */
+.qfy_banner {
+  margin: 4px 12px;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 140px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: inset 0 0 0 2000px rgba(255, 255, 255, 0.45);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px;
+}
+
+.qfy_banner_title {
+  font-size: 22px;
+  color: #222;
+}
+
+.qfy_banner_desc {
+  font-size: 13px;
+  color: #444;
+  margin-top: 6px;
+}
+
+.qfy_banner_btn {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #222;
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 2px 10px;
+  width: fit-content;
+}
+
+.qfy_ad_tag {
+  position: absolute;
+  right: 8px;
+  bottom: 6px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1px 6px;
+  border-radius: 8px;
+}
+
+/* ===== 分类入口 ===== */
+.qfy_cats {
+  display: flex;
+  padding: 12px;
+  gap: 10px;
+}
+
+.qfy_cats a {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #333;
+}
+
+.qfy_cat_img {
+  width: 100%;
+  height: 64px;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-end;
+  padding: 6px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 12px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== 瀑布流 ===== */
+.qfy_waterfall {
+  display: flex;
+  padding: 0 10px;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.qfy_waterfall_col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.qfy_work_card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.qfy_work_cover {
+  width: 100%;
+  background: linear-gradient(135deg, #c9d6ff, #e2e2e2);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.qfy_work_info {
+  padding: 8px 10px 10px;
+}
+
+.qfy_work_title {
+  font-size: 14px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.qfy_work_foot {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.qfy_work_avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 6px;
+  background: linear-gradient(135deg, #d7c7ff, #9fb9ff);
+  flex-shrink: 0;
+}
+
+.qfy_work_author {
+  flex: 1;
+  font-size: 12px;
+  color: #999;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qfy_work_like {
+  font-size: 12px;
+  color: #999;
+}
+
+/* ===== 动态列表 ===== */
+.qfy_post {
+  padding: 0 0 14px;
+  border-bottom: 10px solid #f5f6f7;
+  background: #fff;
+}
+
+.qfy_post_user {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px 8px;
+  gap: 10px;
+}
+
+.qfy_post_avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e2b3a0, #f0d8a8);
+  flex-shrink: 0;
+}
+
+.qfy_post_name {
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+}
+
+.qfy_post_time {
+  font-size: 12px;
+  color: #bbb;
+}
+
+.qfy_post_body {
+  padding: 0 14px;
+}
+
+.qfy_post_title {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.qfy_post_desc {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.qfy_post_imgs {
+  padding: 10px 14px 0;
+}
+
+.qfy_post_img {
+  width: 100%;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.qfy_post_foot {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px 0;
+  gap: 26px;
+  font-size: 13px;
+  color: #999;
+}
+
+.qfy_post_liked {
+  color: #2f9bff;
+}
+
+/* ===== 通用导航栏 ===== */
+.qfy_nav_bar {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 14px;
+  gap: 12px;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.qfy_nav_back {
+  font-size: 20px;
+  color: #333;
+  line-height: 1;
+}
+
+.qfy_nav_title {
+  flex: 1;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.qfy_nav_action {
+  width: 22px;
+  height: 22px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.qfy_nav_side {
+  width: 20px;
+}
+
+/* ===== 活动挑战 ===== */
+.qfy_ch_page {
+  background: #fff;
+  min-height: 100vh;
+}
+
+.qfy_ch_header {
+  display: flex;
+  align-items: center;
+  padding: 14px;
+}
+
+.qfy_ch_back {
+  font-size: 20px;
+  color: #333;
+  margin-right: 10px;
+}
+
+.qfy_ch_title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.qfy_new_tag {
+  background: #2f9bff;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.qfy_all_link {
+  font-size: 14px;
+  color: #2f9bff;
+}
+
+.qfy_ch_banner {
+  margin: 6px 14px 16px;
+  border-radius: 12px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.qfy_ch_banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.qfy_ch_banner > * {
+  position: relative;
+}
+
+.qfy_ch_banner_sub {
+  font-size: 13px;
+  color: #333;
+}
+
+.qfy_ch_banner_title {
+  font-size: 26px;
+  color: #111;
+  margin: 4px 0 10px;
+}
+
+.qfy_ch_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.qfy_ch_tags span {
+  font-size: 12px;
+  background: #fff;
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 2px 10px;
+  color: #222;
+}
+
+.qfy_ch_links {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 14px;
+  row-gap: 18px;
+}
+
+.qfy_ch_links a {
+  width: 50%;
+  font-size: 15px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qfy_mini_tag {
+  font-size: 10px;
+  color: #fff;
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.qfy_mini_hot {
+  background: #ff6b3b;
+}
+
+.qfy_mini_new {
+  background: #ffb03b;
+}
+
+.qfy_create_bar {
+  position: fixed;
+  bottom: 66px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  justify-content: space-around;
+  padding: 14px 10px 10px;
+  background: linear-gradient(to top, #fff 70%, transparent);
+}
+
+.qfy_create_bar a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #333;
+}
+
+.qfy_create_icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #f2f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.qfy_close_x {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 22px;
+  color: #666;
+  background: #fff;
+  border-radius: 50%;
+  padding: 6px 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== 我的 ===== */
+.qfy_pro_head {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 26px 16px 20px;
+  gap: 16px;
+}
+
+.qfy_pro_avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f0d8a8, #c9a06a);
+  flex-shrink: 0;
+}
+
+.qfy_pro_info {
+  flex: 1;
+}
+
+.qfy_pro_name_line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qfy_pro_uname {
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.qfy_pro_lv {
+  font-size: 10px;
+  color: #888;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0 6px;
+}
+
+.qfy_pro_sign {
+  font-size: 13px;
+  color: #999;
+  margin-top: 8px;
+}
+
+.qfy_pro_arrow {
+  color: #ccc;
+  font-size: 20px;
+}
+
+.qfy_pro_stats {
+  display: flex;
+  background: #fff;
+  padding: 4px 0 18px;
+}
+
+.qfy_pro_stats a {
+  flex: 1;
+  text-align: center;
+  color: #333;
+}
+
+.qfy_pro_num {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.qfy_pro_label {
+  font-size: 12px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.qfy_gap {
+  height: 8px;
+  background: #f5f6f7;
+}
+
+.qfy_row_list {
+  background: #fff;
+}
+
+.qfy_row {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 58px;
+  background: #fff;
+  border-bottom: 1px solid #f7f7f7;
+}
+
+.qfy_row_icon {
+  width: 26px;
+  height: 26px;
+  margin-right: 14px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+
+.qfy_row_text {
+  flex: 1;
+  font-size: 16px;
+}
+
+.qfy_row_extra {
+  font-size: 13px;
+  color: #bbb;
+}
+
+.qfy_update_tag {
+  font-size: 11px;
+  color: #fff;
+  background: #2f9bff;
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-left: 6px;
+}
+
+/* ===== 消息 ===== */
+.qfy_msg_tabs {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  padding: 14px 0 0;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.qfy_mtab {
+  font-size: 17px;
+  color: #666;
+  padding-bottom: 10px;
+  border-bottom: 3px solid transparent;
+}
+
+.qfy_mtab.qfy_active {
+  color: #333;
+  font-weight: bold;
+  border-bottom-color: #2f9bff;
+}
+
+.qfy_msg_list .qfy_row {
+  height: 62px;
+}
+
+.qfy_msg_icon {
+  width: 26px;
+  height: 26px;
+  margin-right: 14px;
+  border-radius: 8px;
+  background: #eef3f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* ===== 搜索 ===== */
+.qfy_search_box {
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.qfy_search_input {
+  flex: 1;
+  height: 36px;
+  border: none;
+  border-radius: 18px;
+  background: #f2f4f6;
+  padding: 0 14px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+}
+
+.qfy_search_btn {
+  border: none;
+  border-radius: 18px;
+  background: #2f9bff;
+  color: #fff;
+  font-size: 14px;
+  padding: 0 18px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.qfy_hot_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #fff;
+}
+
+.qfy_hot_tag {
+  font-size: 13px;
+  color: #555;
+  background: #f2f4f6;
+  border-radius: 14px;
+  padding: 5px 12px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.qfy_search_result {
+  padding: 0 10px 10px;
+}
+
+.qfy_search_empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: #bbb;
+  font-size: 14px;
+  background: #fff;
+}
+
+/* ===== 底部导航栏 ===== */
+.qfy_tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 56px;
+  background: #fff;
+  border-top: 1px solid #eee;
+  display: flex;
+  z-index: 100;
+}
+
+.qfy_tabbar a {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #999;
+}
+
+.qfy_tabbar a.qfy_active {
+  color: #333;
+  font-weight: bold;
+}
+
+.qfy_tab_icon {
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 2px;
+}
+
+.qfy_tab_home {
+  background-image: url(../images/art/icons_svg/tab-home.svg);
+}
+
+.qfy_tab_discover {
+  background-image: url(../images/art/icons_svg/tab-discover.svg);
+}
+
+.qfy_tab_msg {
+  background-image: url(../images/art/icons_svg/tab-msg.svg);
+}
+
+.qfy_tab_mine {
+  background-image: url(../images/art/icons_svg/tab-mine.svg);
+}
+
+.qfy_tabbar a.qfy_active .qfy_tab_home {
+  background-image: url(../images/art/icons_solid/tab-home-solid.svg);
+}
+
+.qfy_tabbar a.qfy_active .qfy_tab_discover {
+  background-image: url(../images/art/icons_solid/tab-discover-solid.svg);
+}
+
+.qfy_tabbar a.qfy_active .qfy_tab_msg {
+  background-image: url(../images/art/icons_solid/tab-msg-solid.svg);
+}
+
+.qfy_tabbar a.qfy_active .qfy_tab_mine {
+  background-image: url(../images/art/icons_solid/tab-mine-solid.svg);
+}
+
+.qfy_tab_create {
+  width: 52px;
+  height: 52px;
+  margin-top: -18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2f9bff, #6dc4ff);
+  color: #fff;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(47, 155, 255, 0.4);
+}
+
+.qfy_art_footer {
+  padding: 18px 14px 80px;
+  text-align: center;
+  font-size: 12px;
+  color: #b0b8c4;
+}
